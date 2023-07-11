@@ -1,3 +1,4 @@
+import Cart from "../../components/CartComponent/Cart";
 import ProductType from "../../components/ProductType/ProductType";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import "./Home.css";
@@ -13,6 +14,7 @@ function Home() {
       </div>
       <div className="sliders-container">
         <SliderComponent className="slider-items" />
+        <Cart />
       </div>
     </>
   );

@@ -1,4 +1,3 @@
-
 .product-type{
     display: flex;
     padding: 0 120px;
@@ -11,4 +10,11 @@
 }
 .sliders-container{
     padding: 0 120px;
+    height: 10000px;
+}
+.list-cart{
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    gap: 20px;
 }
