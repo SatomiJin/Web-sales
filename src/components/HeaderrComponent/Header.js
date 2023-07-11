@@ -4,7 +4,6 @@ import {
   WrapperHeaderAccount,
   WrapperTextHeader,
 } from "./Styles";
-import Search from "antd/es/transfer/search";
 import {
   UserOutlined,
   ShoppingCartOutlined,
@@ -12,22 +11,17 @@ import {
 } from "@ant-design/icons";
 
 import "./Header.css";
+import InputSearch from "../inputSearch/InputSearch";
 
 function Header() {
   return (
     <div>
       <WrapperHeader gutter={16}>
-        <Col span={7} className="header-left">
+        <Col span={6} className="header-left">
           <WrapperTextHeader>Schwarzer Ritter</WrapperTextHeader>
         </Col>
-        <Col span={10} className="header-middle">
-          <Search
-            placeholder="Tìm kiếm sản phẩm..."
-            //allowClear
-            enterButton="Search"
-            size="large"
-            //onSearch={onSearch}
-          />
+        <Col span={11} className="header-middle">
+          <InputSearch size="large" placeholder="Tìm kiếm sản phẩm..." />
         </Col>
         <Col span={7} className="header-right">
           <WrapperHeaderAccount>
