@@ -1,0 +1,8 @@
+.wrapper{
+    padding: 0 120px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1px solid black;
+    justify-content: flex-start;
+}
