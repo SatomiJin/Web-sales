@@ -8,7 +8,17 @@
     color: #fff;
     align-items: center;
 }
+.account{
+    display: flex;
+    align-items: center;
+}
 
+.account-text,
+.login-logout,
+.cart-text{
+    display: flex;
+    white-space: nowrap;
+}
 /* icon */
 .account-icon{
     font-size: 35px;
@@ -16,5 +26,8 @@
 .cart-icon{
     font-size: 35px;
 }
-
+.drop-down{
+    margin-left: 3px;
+    padding: 3px;
+}
 

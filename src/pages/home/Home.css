@@ -1,8 +1,14 @@
-.wrapper{
-    padding: 0 120px;
+
+.product-type{
     display: flex;
+    padding: 0 120px;
     align-items: center;
     gap: 24px;
-    border-bottom: 1px solid black;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     justify-content: flex-start;
+    height: 44px;
+    margin-bottom: 3px;
+}
+.sliders-container{
+    padding: 0 120px;
 }

@@ -16,7 +16,7 @@ import InputSearch from "../inputSearch/InputSearch";
 function Header() {
   return (
     <div>
-      <WrapperHeader gutter={16}>
+      <WrapperHeader>
         <Col span={6} className="header-left">
           <WrapperTextHeader>Schwarzer Ritter</WrapperTextHeader>
         </Col>
@@ -27,16 +27,17 @@ function Header() {
           <WrapperHeaderAccount>
             <UserOutlined className="account-icon" />
             <div className="account-info">
-              <span>Đăng nhập/Đăng ký</span>
+              <span className="login-logout">Đăng nhập/Đăng ký</span>
               <div className="account">
-                <span>Tài khoản</span>
-                <DownCircleOutlined />
+                <span className="account-text">
+                  Tài khoản <DownCircleOutlined className="drop-down" />
+                </span>
               </div>
             </div>
           </WrapperHeaderAccount>
           <div className="cart">
             <ShoppingCartOutlined className="cart-icon" />
-            <span>Giỏ hàng</span>
+            <span className="cart-text">Giỏ hàng</span>
           </div>
         </Col>
       </WrapperHeader>
