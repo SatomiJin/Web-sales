@@ -1,0 +1,19 @@
+
+/* header right */
+.header-right{
+    display: flex;
+    gap: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* icon */
+.account-icon{
+    font-size: 35px;
+}
+.cart-icon{
+    font-size: 35px;
+}
+
+
