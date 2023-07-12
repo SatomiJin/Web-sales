@@ -1,6 +1,7 @@
-import Cart from "../../components/CartComponent/Cart";
+import CardProduct from "../../components/CardComponent/CardProduct";
 import ProductType from "../../components/ProductType/ProductType";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
+import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import "./Home.css";
 
 function Home() {
@@ -14,7 +15,21 @@ function Home() {
       </div>
       <div className="sliders-container">
         <SliderComponent className="slider-items" />
-        <Cart />
+        <div className="card-homepages">
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+          <CardProduct />
+        </div>
+        <div className="button-wrapper">
+          <ButtonComponent
+            className="button-show-more"
+            textButton="Xem thêm"
+            outline
+          />
+        </div>
       </div>
     </>
   );

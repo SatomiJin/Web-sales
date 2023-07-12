@@ -1,0 +1,12 @@
+.type-product-wrapper{
+    padding: 0 120px;
+    padding-top: 10px;
+    background-color: #efefef;
+    flex-wrap: nowrap;
+}
+.nav-type-product{
+    background-color: #fff;   
+    margin-right: 10px; 
+    padding: 10px;
+    border-radius: 6px;
+}

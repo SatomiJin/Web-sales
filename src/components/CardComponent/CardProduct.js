@@ -1,9 +1,8 @@
 import { Card } from "antd";
 import { StarOutlined } from "@ant-design/icons";
-import "./Cart.css";
+import "./CardProduct.css";
 import logo from "../../assets/images/logo";
-function Cart() {
-  console.log(logo);
+function CardProduct() {
   return (
     <Card
       className="cart-items"
@@ -34,4 +33,4 @@ function Cart() {
   );
 }
 
-export default Cart;
+export default CardProduct;

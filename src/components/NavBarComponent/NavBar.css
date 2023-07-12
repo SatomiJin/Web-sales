@@ -1,0 +1,38 @@
+.label-nav{
+    color: rgb(56,56,61);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.nav-item {
+    color: rgb(56,56,61);
+    font-size: 12px;
+    font-weight: 400;
+}
+.nav-content{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    gap: 12px;
+}
+.checkbox-list{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.checkbox-item{
+    margin-left: 0;
+}
+.rate-star-nav{
+    display: flex;  
+    font-size: 12px;
+    gap: 4px;
+}
+.price-item{
+    width: fit-content;
+    padding: 4px;
+    border-radius: 10px;
+    color: rgb(56,56,61);
+    background-color: rgb(238,238,238);
+}
