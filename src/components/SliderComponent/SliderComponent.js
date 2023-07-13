@@ -2,8 +2,8 @@ import { Image } from "antd";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./SliderComponent.css";
 import images from "../../assets/images";
+import "./SliderComponent.css";
 
 function SliderComponent() {
   const settings = {
@@ -21,13 +21,7 @@ function SliderComponent() {
       <Slider {...settings}>
         {images.map((image, index) => {
           return (
-            <Image
-              className="slider-images"
-              src={image}
-              preview={false}
-              alt="sliders"
-              key={index}
-            />
+            <Image src={image} preview={false} alt="sliders" key={index} />
           );
         })}
       </Slider>

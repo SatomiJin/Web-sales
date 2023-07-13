@@ -27,7 +27,7 @@ function Home() {
           <ButtonComponent
             className="button-show-more"
             textButton="Xem thêm"
-            outline
+            dash="true"
           />
         </div>
       </div>

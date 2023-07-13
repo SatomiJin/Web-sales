@@ -1,4 +1,4 @@
-import { Col } from "antd";
+import { Badge, Col } from "antd";
 import {
   WrapperHeader,
   WrapperHeaderAccount,
@@ -36,7 +36,9 @@ function Header() {
             </div>
           </WrapperHeaderAccount>
           <div className="cart">
-            <ShoppingCartOutlined className="cart-icon" />
+            <Badge count={5} size="small">
+              <ShoppingCartOutlined className="cart-icon" />
+            </Badge>
             <span className="cart-text">Giỏ hàng</span>
           </div>
         </Col>

@@ -1,0 +1,17 @@
+
+.list-images-product-pd{
+    padding: 16px;
+    background-color: #fff;
+}
+.image-item-small{
+    height: 64px;
+    width: 64px;
+}
+.list-image-item-col{
+    flex-basis: unset;
+    display: flex;
+}
+.list-images-item-row{
+    padding-top: 10px;
+    justify-content: space-between;
+}
