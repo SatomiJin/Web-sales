@@ -13,8 +13,23 @@
     align-items: center;
 }
 
-.account-text,
-.login-logout,
+.btn-account{
+    display: flex;
+    position: relative;
+    border: none;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    &:hover{
+        opacity: 0.8;
+        
+    }
+}
 .cart-text{
     display: flex;
     white-space: nowrap;

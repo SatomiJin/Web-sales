@@ -1,11 +1,13 @@
 import TypeProductPage from "../pages/TypeProductPage/TypeProductPage";
 import Home from "../pages/home/Home";
-import NotFoundPage from "../pages/notfoundpage/NotFoundPage";
 import Orders from "../pages/orders/Orders";
 import Products from "../pages/products/Products";
 import SigninPage from "../pages/SigninPage/SigninPgae";
 import SignupPage from "../pages/SignupPage/SignupPage";
 import ProductDetailPage from "../pages/ProductDetailPage/ProductDetailPage";
+import TermsandConditions from "../pages/TermsandConditions/TermsandConditions";
+import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
+import NotFoundPage from "../pages/notfoundpage/NotFoundPage";
 
 export const routes = [
   {
@@ -29,18 +31,28 @@ export const routes = [
     isShowHeader: true,
   },
   {
-    path: "/signin",
+    path: "/sign-in",
     page: SigninPage,
-    isShowHeader: true,
+    isShowHeader: false,
   },
   {
-    path: "/signup",
+    path: "/sign-up",
     page: SignupPage,
-    isShowHeader: true,
+    isShowHeader: false,
   },
   {
     path: "/product-detail",
     page: ProductDetailPage,
+    isShowHeader: true,
+  },
+  {
+    path: "/termsand-conditions",
+    page: TermsandConditions,
+    isShowHeader: false,
+  },
+  {
+    path: "/privacy-policy",
+    page: PrivacyPolicy,
     isShowHeader: true,
   },
   {

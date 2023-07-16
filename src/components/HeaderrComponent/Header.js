@@ -4,14 +4,11 @@ import {
   WrapperHeaderAccount,
   WrapperTextHeader,
 } from "./Styles";
-import {
-  UserOutlined,
-  ShoppingCartOutlined,
-  DownCircleOutlined,
-} from "@ant-design/icons";
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 
 import "./Header.css";
 import InputSearch from "../inputSearch/InputSearch";
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
 
 function Header() {
   return (
@@ -25,14 +22,11 @@ function Header() {
         </Col>
         <Col span={7} className="header-right">
           <WrapperHeaderAccount>
-            <UserOutlined className="account-icon" />
-            <div className="account-info">
-              <span className="login-logout">Đăng nhập/Đăng ký</span>
-              <div className="account">
-                <span className="account-text">
-                  Tài khoản <DownCircleOutlined className="drop-down" />
-                </span>
-              </div>
+            <div className="account">
+              <button type="button" className="btn-account">
+                <UserOutlined />
+                &nbsp;Tài khoản
+              </button>
             </div>
           </WrapperHeaderAccount>
           <div className="cart">

@@ -4,14 +4,14 @@
 
 .search-input{
     width: 80%;
-    height: 40px;
     margin-right: 3px;
+    margin-top: 5px;
     caret-color:rgba(254, 44, 85, 1);
-    
-}
-.search-input:hover{
+    &::hover{
     border: 1px solid black;
+    }
 }
+
 .search-button{
     width: 10%;
     padding: 5px;

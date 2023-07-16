@@ -1,0 +1,10 @@
+.input-sign-in-form{
+    width: 100%;
+    padding: 10px 0px;
+    border: none;
+    background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+    color: rgb(36, 36, 36);
+    outline: none;
+    font-family: inherit;
+    line-height: 1.15;
+}

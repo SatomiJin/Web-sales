@@ -111,10 +111,8 @@ function ProductDetail() {
             <ButtonComponent
               className="btn-installment-purchase-product-detail"
               size="large"
-              textButton={`mua trước trả sau`}
-            >
-              <span>Lãi suất 0%</span>
-            </ButtonComponent>
+              textButton={`Mua Trước Trả Sau`}
+            ></ButtonComponent>
           </div>
         </Col>
       </Row>
