@@ -7,7 +7,7 @@ import "./Home.css";
 function Home() {
   const products = ["TV", "Tủ lạnh", "laptop"];
   return (
-    <>
+    <div className="home-container">
       <div className="product-type">
         {products.map((product) => {
           return <ProductType name={product} key={product} />;
@@ -24,14 +24,10 @@ function Home() {
           <CardProduct />
         </div>
         <div className="button-wrapper">
-          <ButtonComponent
-            className="button-show-more"
-            textButton="Xem thêm"
-            dash="true"
-          />
+          <ButtonComponent className="button-show-more" textButton="Xem thêm" dash="true" />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

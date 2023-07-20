@@ -1,19 +1,15 @@
 import { Badge, Col } from "antd";
-import {
-  WrapperHeader,
-  WrapperHeaderAccount,
-  WrapperTextHeader,
-} from "./Styles";
-import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { WrapperHeader, WrapperHeaderAccount, WrapperTextHeader } from "./Styles";
+import { HomeOutlined, UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Link } from "react-router-dom";
 
 import "./Header.css";
 import InputSearch from "../inputSearch/InputSearch";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
 
 function Header() {
   return (
-    <div>
-      <WrapperHeader>
+    <div className="header-container">
+      <WrapperHeader className="header-wrapper">
         <Col span={6} className="header-left">
           <WrapperTextHeader>Schwarzer Ritter</WrapperTextHeader>
         </Col>
@@ -24,8 +20,13 @@ function Header() {
           <WrapperHeaderAccount>
             <div className="account">
               <button type="button" className="btn-account">
+                <HomeOutlined />
+                &nbsp;<Link to="/">Trang chủ</Link>
+              </button>
+
+              <button type="button" className="btn-account">
                 <UserOutlined />
-                &nbsp;Tài khoản
+                &nbsp;<Link to="/sign-in">Tài khoản</Link>
               </button>
             </div>
           </WrapperHeaderAccount>

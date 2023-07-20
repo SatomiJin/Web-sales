@@ -2,7 +2,6 @@ import NavBar from "../../components/NavBarComponent/NavBar";
 import CardProduct from "../../components/CardComponent/CardProduct";
 import "./TypeRroductPage.css";
 import { Col, Pagination, Row } from "antd";
-import { Fragment } from "react";
 
 function TypeProductPage() {
   const onChange = () => {};
@@ -18,12 +17,7 @@ function TypeProductPage() {
             <CardProduct />
             <CardProduct />
           </div>
-          <Pagination
-            className="pagination-type-product"
-            defaultCurrent={2}
-            total={100}
-            onChange={onChange}
-          />
+          <Pagination className="pagination-type-product" defaultCurrent={2} total={100} onChange={onChange} />
         </Col>
       </Row>
     </div>

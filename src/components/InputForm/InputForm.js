@@ -3,7 +3,6 @@ import "./InputForm.css";
 import { useState } from "react";
 
 function InputForm(props) {
-  const [valueInput, setValueInput] = useState("");
   const { placeholder, ...rests } = props;
   return (
     <div className="input-form-wrapper">
@@ -11,8 +10,9 @@ function InputForm(props) {
         className="input-sign-in-form"
         autoComplete="new-password"
         placeholder={placeholder}
-        valueinput={valueInput}
+        valueinput={props.value}
         {...rests}
+        onChange={props.onChange}
       />
     </div>
   );

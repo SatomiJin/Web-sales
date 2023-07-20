@@ -1,7 +1,7 @@
 import { Card } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import "./CardProduct.css";
-import logo from "../../assets/images/logo";
+import logo from "../../assets/images/logo/logo.png";
 function CardProduct() {
   return (
     <Card
@@ -9,12 +9,7 @@ function CardProduct() {
       hoverable
       headStyle={{ width: "200px", height: "200px" }}
       bodyStyle={{ padding: "10px" }}
-      cover={
-        <img
-          alt="example"
-          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-        />
-      }
+      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
     >
       <img className="logo-web" src={logo} alt="logo" />
       <div className="products-name">SamSung</div>

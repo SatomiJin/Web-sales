@@ -8,10 +8,8 @@ function NavBar() {
       case "text":
         return options.map((option, index) => {
           return (
-            <div className="nav-list-item">
-              <h3 key={index} className="nav-item">
-                {option}
-              </h3>
+            <div className="nav-list-item" key={index}>
+              <h3 className="nav-item">{option}</h3>
             </div>
           );
         });
@@ -20,7 +18,7 @@ function NavBar() {
           <Checkbox.Group className="checkbox-list" onChange={handleOnchange}>
             {options.map((option, index) => {
               return (
-                <Checkbox className="checkbox-item" value={option.value}>
+                <Checkbox className="checkbox-item" value={option.value} key={index}>
                   {option.label}
                 </Checkbox>
               );
@@ -30,13 +28,9 @@ function NavBar() {
       case "rate":
         return options.map((option, index) => {
           return (
-            <div className="rate-star-nav">
+            <div className="rate-star-nav" key={index}>
               <span>
-                <Rate
-                  className="star-item-nav"
-                  allowHalf
-                  defaultValue={option}
-                />
+                <Rate className="star-item-nav" allowHalf defaultValue={option} />
                 &nbsp; từ {option} sao
               </span>
             </div>
@@ -59,9 +53,7 @@ function NavBar() {
   return (
     <div className="wrapper-navbar">
       <h4 className="label-nav">label </h4>
-      <div className="nav-content">
-        {renderContent("text", ["Tu lanh", "TV", "Laptop"])}
-      </div>
+      <div className="nav-content">{renderContent("text", ["Tu lanh", "TV", "Laptop"])}</div>
     </div>
   );
 }
