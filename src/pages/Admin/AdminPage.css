@@ -1,0 +1,24 @@
+.admin-page-container{
+    margin-top: 71px;
+    display: flex;
+}
+
+/* menu */
+.menu-item-admin-page{
+    position: relative;
+    
+}
+
+.change-theme-menu{
+    width: 60px;
+    position: absolute;
+    right: 45px;
+    top: 15px;
+    z-index: 1;
+}
+
+/* nội dung */
+.content-admin-page{
+    height: 100vh;
+    margin-left: 10px;
+}

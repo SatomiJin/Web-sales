@@ -1,13 +1,49 @@
 import { Form, Image } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import * as UserService from "../../Services/UserService";
+import { UserMutationHook } from "../../hooks/UseMutationHook";
+import * as message from "../../Message/Message";
+import jwt_decode from "jwt-decode";
+import { useDispatch } from "react-redux";
+
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import InputForm from "../../components/InputForm/InputForm";
 import imageLogin from "../../assets/images/logo/image-login.png";
 import socialItem from "../../assets/images/social-item";
+import Loading from "../../loading/Loading";
+import { updateUser } from "../../redux/slides/UserSlide";
 import "./SigninPgae.css";
-import { useState } from "react";
 
 function SigninPage() {
+  //chuyển hướng
+  const navigate = useNavigate();
+  //dispatch
+  const dispatch = useDispatch();
+  //gọi API
+  const mutation = UserMutationHook((data) => UserService.loginUser(data));
+  const { data, isLoading, isSuccess } = mutation;
+
+  //chuyển hướng sang home khi đăng nhập thành công
+  useEffect(() => {
+    if (isSuccess) {
+      message.success();
+      navigate("/");
+      localStorage.setItem("access_token", JSON.stringify(data?.access_token));
+      if (data?.access_token) {
+        const decode = jwt_decode(data?.access_token);
+
+        if (decode.id) {
+          handleGetDetailUser(decode?.id, data?.access_token);
+        }
+      }
+    }
+  }, [isSuccess]);
+
+  const handleGetDetailUser = async (id, token) => {
+    const res = await UserService.getDetailUser(id, token);
+    dispatch(updateUser({ ...res, access_token: token }));
+  };
   //xử lý dữ liệu form
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,7 +56,7 @@ function SigninPage() {
     setPassword(e.target.value);
   };
   const handleOnClickSignin = () => {
-    console.log("email:", email, "password:", password);
+    mutation.mutate({ email, password });
   };
   return (
     <div className="container-sign-in-page">
@@ -47,12 +83,14 @@ function SigninPage() {
               <InputForm placeholder="Email" type="text" name="username" onChange={handleOnchangeEmail} />
             </Form.Item>
             <InputForm placeholder="Mật khẩu" type="password" name="password" onChange={handleOnchangePassword} />
-            <ButtonComponent
-              disabled={!email.length || !password.length}
-              className="btn-sign-in"
-              textButton="Đăng nhập"
-              onClick={handleOnClickSignin}
-            />
+            <Loading isLoading={isLoading}>
+              <ButtonComponent
+                disabled={!email.length || !password.length}
+                className="btn-sign-in"
+                textButton="Đăng nhập"
+                onClick={handleOnClickSignin}
+              />
+            </Loading>
           </Form>
           <p className="sign-in-with-email">
             Chưa có tài khoản? <Link to="/sign-up">Đăng ký</Link>

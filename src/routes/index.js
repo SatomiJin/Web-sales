@@ -8,6 +8,8 @@ import ProductDetailPage from "../pages/ProductDetailPage/ProductDetailPage";
 import TermsandConditions from "../pages/TermsandConditions/TermsandConditions";
 import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import NotFoundPage from "../pages/notfoundpage/NotFoundPage";
+import ProfileUser from "../pages/ProfileUser/ProfileUser";
+import AdminPage from "../pages/Admin/AdminPage";
 
 export const routes = [
   {
@@ -54,6 +56,17 @@ export const routes = [
     path: "/privacy-policy",
     page: PrivacyPolicy,
     isShowHeader: true,
+  },
+  {
+    path: "/profile-user",
+    page: ProfileUser,
+    isShowHeader: true,
+  },
+  {
+    path: "/system/admin",
+    page: AdminPage,
+    isShowHeader: true,
+    isPrivate: true,
   },
   {
     path: "*",

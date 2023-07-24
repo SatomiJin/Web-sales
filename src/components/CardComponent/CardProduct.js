@@ -2,7 +2,8 @@ import { Card } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import "./CardProduct.css";
 import logo from "../../assets/images/logo/logo.png";
-function CardProduct() {
+function CardProduct(props) {
+  const { countInStock, description, image, name, price, rating, type, discount, sold } = props;
   return (
     <Card
       className="cart-items"
@@ -12,17 +13,17 @@ function CardProduct() {
       cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
     >
       <img className="logo-web" src={logo} alt="logo" />
-      <div className="products-name">SamSung</div>
+      <div className="products-name">{name}</div>
       <div className="rated">
         <span>
-          5.0 &nbsp;
+          {rating} &nbsp;
           <StarOutlined />
         </span>
 
-        <span> | Đã bán 1000 +</span>
+        <span> | Đã bán {sold || 1000}+</span>
       </div>
       <div className="price-product">
-        20.000.000 đ <span className="discount-product">-6%</span>
+        {price} đ <span className="discount-product">-{discount || 5}%</span>
       </div>
     </Card>
   );

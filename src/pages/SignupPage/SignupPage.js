@@ -1,16 +1,34 @@
 import { Form, Image } from "antd";
 import { RollbackOutlined, EyeInvisibleFilled, EyeFilled } from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import * as UserSevice from "../../Services/UserService";
+import { UserMutationHook } from "../../hooks/UseMutationHook";
+
+import * as message from "../../Message/Message";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import InputForm from "../../components/InputForm/InputForm";
 import imageLogin from "../../assets/images/logo/image-login.png";
 import socialItem from "../../assets/images/social-item";
 import "../SigninPage/SigninPgae.css";
-import { Link } from "react-router-dom";
-import { useState } from "react";
 
 function SignupPage() {
+  //lịch sử
+  const navigate = useNavigate();
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isShowConfirmPassword, setIsShowConfirmPassword] = useState(false);
+  //đăng ký tài khoản
+  const mutation = UserMutationHook((data) => UserSevice.signupUser(data));
+  const { isSuccess, isError } = mutation;
+
+  useEffect(() => {
+    if (isSuccess) {
+      message.success();
+      navigate("/sign-in");
+    } else if (isError) {
+      message.error();
+    }
+  }, [isSuccess, isError]);
 
   //xử lý dữ liệu trong form
   //Email
@@ -28,9 +46,19 @@ function SignupPage() {
   const hadnleOnChangeConfirmPassword = (e) => {
     setConfirmPassword(e.target.value);
   };
+  //tên hiển thị
+  const [name, setName] = useState("");
+  const handleOnchangeName = (e) => {
+    setName(e.target.value);
+  };
+  //số điện thoại
+  const [phone, setPhoneNumber] = useState("");
+  const handleOnchangePhoneNumber = (e) => {
+    setPhoneNumber(e.target.value);
+  };
   //Đăng ký
   const handleSignUp = () => {
-    console.log("email:", email, "password:", password);
+    mutation.mutate({ name, email, password, confirmPassword, phone });
   };
   return (
     <div className="container-sign-in-page">
@@ -41,6 +69,7 @@ function SignupPage() {
             <p>Đăng ký ngay - Quà trao tay</p>
           </div>
           <Form className="form-input-sign-in">
+            <InputForm placeholder="Tên hiển thị.." type="text" onChange={handleOnchangeName} />
             <Form.Item
               name="email"
               rules={[
@@ -82,21 +111,22 @@ function SignupPage() {
                 {isShowConfirmPassword ? <EyeFilled /> : <EyeInvisibleFilled />}
               </span>
             </div>
-            <ButtonComponent
-              disabled={!email.length || !password.length || !confirmPassword.length}
-              onClick={handleSignUp}
-              className="btn-sign-in"
-              textButton="Đăng ký"
-            />
-            <Link to="/sign-in">
-              <ButtonComponent
-                className="back-to-sign-in"
-                icon={<RollbackOutlined />}
-                textButton="Trở lại trang đăng nhập"
-                to="/sign-in"
-              />
-            </Link>
+            <InputForm placeholder="Số điện thoại" type="text" onChange={handleOnchangePhoneNumber} />
           </Form>
+          <ButtonComponent
+            disabled={!email.length || !password.length || !confirmPassword.length || !name.length || !phone.length}
+            onClick={handleSignUp}
+            className="btn-sign-in"
+            textButton="Đăng ký"
+          />
+          <Link to="/sign-in">
+            <ButtonComponent
+              className="back-to-sign-in"
+              icon={<RollbackOutlined />}
+              textButton="Trở lại trang đăng nhập"
+              to="/sign-in"
+            />
+          </Link>
           <div className="footer-left-sign-in">
             <p className="social-heading-sign-in-page">
               <span>Hoặc tiếp tục bằng:</span>

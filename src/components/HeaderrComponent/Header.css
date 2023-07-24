@@ -24,6 +24,7 @@
     display: flex;
     position: relative;
     border: none;
+    
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
@@ -54,3 +55,10 @@
     padding: 3px;
 }
 
+/* avatar user */
+.avatar-user-header{
+    width: 30px;
+    height: 30px; 
+    border-radius: 50%;
+    object-fit: cover;
+}

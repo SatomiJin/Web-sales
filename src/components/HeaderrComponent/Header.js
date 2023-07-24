@@ -1,12 +1,48 @@
-import { Badge, Col } from "antd";
+import { Badge, Button, Col, Popover } from "antd";
 import { WrapperHeader, WrapperHeaderAccount, WrapperTextHeader } from "./Styles";
 import { HomeOutlined, UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import "./Header.css";
 import InputSearch from "../inputSearch/InputSearch";
+import { resetUser } from "../../redux/slides/UserSlide";
+import { useState } from "react";
+import Loading from "../../loading/Loading";
 
 function Header() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const handleLogOutUser = () => {
+    setLoading(true);
+    localStorage.removeItem("access_token");
+    dispatch(resetUser());
+    setLoading(false);
+    navigate("/");
+  };
+
+  const content = (
+    <div>
+      {user?.isAdmin ? (
+        <>
+          <Button onClick={() => navigate("/profile-user")}>Thông tin người dùng</Button>
+          <br />
+          <Button onClick={() => navigate("/system/admin")}>Quản lý hệ thống</Button>
+          <br />
+          <Button onClick={handleLogOutUser}>Đăng xuất</Button>
+        </>
+      ) : (
+        <>
+          <Button onClick={() => navigate("/profile-user")}>Thông tin người dùng</Button>
+          <br />
+          <Button onClick={handleLogOutUser}>Đăng xuất</Button>
+        </>
+      )}
+    </div>
+  );
+
   return (
     <div className="header-container">
       <WrapperHeader className="header-wrapper">
@@ -19,15 +55,30 @@ function Header() {
         <Col span={7} className="header-right">
           <WrapperHeaderAccount>
             <div className="account">
-              <button type="button" className="btn-account">
-                <HomeOutlined />
-                &nbsp;<Link to="/">Trang chủ</Link>
-              </button>
-
-              <button type="button" className="btn-account">
-                <UserOutlined />
-                &nbsp;<Link to="/sign-in">Tài khoản</Link>
-              </button>
+              {/* logic */}
+              {user?.name ? (
+                <>
+                  <Loading isLoading={loading}>
+                    <Popover content={content} title="Menu" trigger="click">
+                      <button type="button" className="btn-account">
+                        {user?.avatar ? (
+                          <img src={user?.avatar} className="avatar-user-header" alt="avatar" />
+                        ) : (
+                          <UserOutlined />
+                        )}
+                        &nbsp;{user?.name}
+                      </button>
+                    </Popover>
+                  </Loading>
+                </>
+              ) : (
+                <Link to="/sign-in">
+                  <button type="button" className="btn-account">
+                    <UserOutlined />
+                    &nbsp;Tài khoản
+                  </button>
+                </Link>
+              )}
             </div>
           </WrapperHeaderAccount>
           <div className="cart">
