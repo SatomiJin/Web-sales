@@ -18,7 +18,6 @@ export const getDetailUser = async (id, access_token) => {
       token: `Bearer ${access_token}`,
     },
   });
-  console.log("access_token", access_token);
   return res.data;
 };
 

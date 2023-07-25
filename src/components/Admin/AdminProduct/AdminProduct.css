@@ -1,0 +1,33 @@
+.product-management-admin-container{
+    font-size: 14px;
+}
+/* Form */
+.create-product-form{
+    align-items: center;
+    
+}
+/* chức năng */
+.btn-product-admin-management{
+    margin-top: 5px;
+    height: 50px;
+    border-style: solid;
+    font-weight: 600;
+    font-size: 16px;
+}
+.btn-product-admin-management.add{
+    color: #32de84;
+}
+/* bảng thống kê user */
+.table-content-management-product{
+    margin-top: 20px;
+}
+/* image product */
+.product-image-management{
+     height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.btn-submit-create-product{
+    margin: auto;
+}

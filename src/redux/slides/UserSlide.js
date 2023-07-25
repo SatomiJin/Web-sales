@@ -33,7 +33,6 @@ export const UserSlide = createSlice({
       state.id = _id;
       state.isAdmin = isAdmin;
       state.access_token = access_token;
-      console.log("action", action);
     },
     resetUser: (state) => {
       state.name = "";

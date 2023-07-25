@@ -76,6 +76,7 @@ function ProfileUser() {
       file.preview = await getBase64(file.originFileObj);
     }
     setAvatar(file.preview);
+    console.log("avatar:", avatar);
   };
   const handleUpdateUserProfile = () => {
     mutation.mutate({ id: user?.id, name, email, phone, address, avatar });

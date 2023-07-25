@@ -1,0 +1,18 @@
+.user-management-admin-container{
+    font-size: 14px;
+}
+/* chức năng */
+.btn-user-admin-management{
+    margin-top: 5px;
+    height: 50px;
+    border-style: solid;
+    font-weight: 600;
+    font-size: 16px;
+}
+.btn-user-admin-management.add{
+    color: #32de84;
+}
+/* bảng thống kê user */
+.table-content-management-user{
+    margin-top: 20px;
+}

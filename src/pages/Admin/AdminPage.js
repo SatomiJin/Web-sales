@@ -3,24 +3,33 @@ import React, { useState } from "react";
 import { AppstoreOutlined, UserOutlined, SettingOutlined } from "@ant-design/icons";
 import { Menu, Switch } from "antd";
 import { getItem } from "../../utils";
+import AdminUser from "../../components/Admin/AdminUser/AdminUser";
+import AdminProduct from "../../components/Admin/AdminProduct/AdminProduct";
 const items = [
-  getItem("Quản lý người dùng", "user", <UserOutlined />, [
-    getItem("Option 1", "1"),
-    getItem("Option 2", "2"),
-    getItem("Option 3", "3"),
-    getItem("Option 4", "4"),
-  ]),
-  getItem("Quản lý sản phẩm", "product", <AppstoreOutlined />, [getItem("Option 5", "5"), getItem("Option 6", "6")]),
+  getItem("", ""),
+  getItem("Quản lý người dùng", "user", <UserOutlined />),
+  getItem("Quản lý sản phẩm", "product", <AppstoreOutlined />),
 ];
 function AdminPage() {
   const [theme, setTheme] = useState("dark");
-  const [current, setCurrent] = useState("1");
+  const [current, setCurrent] = useState("user");
   const changeTheme = (value) => {
     setTheme(value ? "dark" : "light");
   };
   const onClick = ({ key }) => {
     console.log("click", key);
     setCurrent(key);
+  };
+
+  const renderPage = (current) => {
+    switch (current) {
+      case "user":
+        return <AdminUser />;
+      case "product":
+        return <AdminProduct />;
+      default:
+        return;
+    }
   };
   return (
     <div className="admin-page-container">
@@ -38,17 +47,16 @@ function AdminPage() {
           onClick={onClick}
           style={{
             width: 300,
-            borderRadius: 10,
+            height: "100vh",
+            boxShadow: "1px 1px 2px #ccc",
           }}
-          defaultOpenKeys={["user"]}
-          selectedKeys={[current]}
           mode="inline"
+          defaultSelectedKeys={["user"]}
+          defaultOpenKeys={["user"]}
           items={items}
         />
       </div>
-      <div className="content-admin-page">
-        {current ? <span>key la {current}</span> : <span>nothing</span>} <span>keyyyyyyy</span>
-      </div>
+      <div className="content-admin-page">{renderPage(current)}</div>
     </div>
   );
 }
