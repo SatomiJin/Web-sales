@@ -38,3 +38,17 @@ export const updateUser = async (id, data) => {
 
   return res;
 };
+
+export const getAllUser = async (access_token) => {
+  const res = await axios.get(`${process.env.REACT_APP_API_KEY}user/get-all-users`, {
+    headers: {
+      token: `Bearer ${access_token}`,
+    },
+  });
+  return res.data;
+};
+
+export const deleteUser = async (id, access_token) => {
+  const res = await axios.delete(`${process.env.REACT_APP_API_KEY}user/delete-user/${id}`);
+  return res.data;
+};

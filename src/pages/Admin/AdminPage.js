@@ -17,7 +17,6 @@ function AdminPage() {
     setTheme(value ? "dark" : "light");
   };
   const onClick = ({ key }) => {
-    console.log("click", key);
     setCurrent(key);
   };
 
@@ -47,7 +46,7 @@ function AdminPage() {
           onClick={onClick}
           style={{
             width: 300,
-            height: "100vh",
+            height: "1000px",
             boxShadow: "1px 1px 2px #ccc",
           }}
           mode="inline"

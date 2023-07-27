@@ -43,7 +43,6 @@ function ProfileUser() {
       message.success();
       handleGetDetailUser(user?.id, user?.access_token);
       window.location.reload();
-      console.log("avatar", avatar);
     } else if (isError) {
       message.error();
     }
@@ -76,7 +75,6 @@ function ProfileUser() {
       file.preview = await getBase64(file.originFileObj);
     }
     setAvatar(file.preview);
-    console.log("avatar:", avatar);
   };
   const handleUpdateUserProfile = () => {
     mutation.mutate({ id: user?.id, name, email, phone, address, avatar });

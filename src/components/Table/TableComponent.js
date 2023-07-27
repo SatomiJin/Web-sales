@@ -8,9 +8,7 @@ function TableComponent(props) {
 
   // rowSelection object indicates the need for row selection
   const rowSelection = {
-    onChange: (selectedRowKeys, selectedRows) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
-    },
+    onChange: (selectedRowKeys, selectedRows) => {},
     getCheckboxProps: (record) => ({
       disabled: record.name === "Disabled User",
       // Column configuration not to be checked
@@ -27,6 +25,7 @@ function TableComponent(props) {
           }}
           columns={columns}
           dataSource={data}
+          {...props}
         />
       </div>
     </Loading>
