@@ -1,16 +1,14 @@
 import { Col, Image, InputNumber, Rate, Row } from "antd";
-import { StarFilled, PlusOutlined, MinusOutlined } from "@ant-design/icons";
+import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
+import { useState } from "react";
 
-import { getAllProduct } from "../../Services/ProductService";
 import * as ProductService from "../../Services/ProductService";
-import imageProduct from "../../assets/images/products/samsunga23.jpg";
 import imageProductSmall from "../../assets/images/products/samsunga23small.jpg";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import "./ProductDetail.css";
 import Loading from "../../loading/Loading";
-import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 
 const ProductDetail = ({ idProduct }) => {
   const [numProduct, setNumProduct] = useState(1);

@@ -10,6 +10,7 @@ import PrivacyPolicy from "../pages/PrivacyPolicy/PrivacyPolicy";
 import NotFoundPage from "../pages/notfoundpage/NotFoundPage";
 import ProfileUser from "../pages/ProfileUser/ProfileUser";
 import AdminPage from "../pages/Admin/AdminPage";
+import OrderPage from "../pages/OrderPage/OrderPage";
 
 export const routes = [
   {
@@ -28,7 +29,7 @@ export const routes = [
     isShowHeader: true,
   },
   {
-    path: "/:type",
+    path: "/product/:type",
     page: TypeProductPage,
     isShowHeader: true,
   },
@@ -68,6 +69,11 @@ export const routes = [
     isShowHeader: true,
     isPrivate: true,
   },
+  // {
+  //   path: "/order-page",
+  //   page: OrderPage,
+  //   isShowHeader: true,
+  // },
   {
     path: "*",
     page: NotFoundPage,
