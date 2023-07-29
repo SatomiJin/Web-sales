@@ -73,10 +73,8 @@ function AdminUser() {
 
   //cập nhật user
   const mutationUpdate = UserMutationHook((data) => {
-    console.log("data", data);
     const { id, token, ...rests } = data;
     const res = UserService.updateUser(id, { ...rests }, token);
-    console.log("res-up", res);
     return res;
   });
 
@@ -369,7 +367,6 @@ function AdminUser() {
 
   //các hàm liên quan mutation
   const onUpdateUser = () => {
-    console.log("click");
     mutationUpdate.mutate(
       { id: rowSelected, token: user?.access_token, ...stateUserDetail },
       {

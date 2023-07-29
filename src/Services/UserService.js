@@ -52,3 +52,8 @@ export const deleteUser = async (id, access_token) => {
   const res = await axios.delete(`${process.env.REACT_APP_API_KEY}user/delete-user/${id}`);
   return res.data;
 };
+
+export const deleteMutipleUsers = async (ids, access_token) => {
+  const res = await axios.delete(`${process.env.REACT_APP_API_KEY}user/delete-multiple-user`, ids);
+  return res.data;
+};

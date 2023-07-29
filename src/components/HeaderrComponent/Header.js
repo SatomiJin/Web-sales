@@ -1,17 +1,20 @@
 import { Badge, Button, Col, Popover } from "antd";
 import { WrapperHeader, WrapperHeaderAccount, WrapperTextHeader } from "./Styles";
-import { HomeOutlined, UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
-import { Link, useNavigate } from "react-router-dom";
+import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 import "./Header.css";
 import InputSearch from "../inputSearch/InputSearch";
 import { resetUser } from "../../redux/slides/UserSlide";
-import { useState } from "react";
 import Loading from "../../loading/Loading";
+import logoTeam from "../../assets/images/logo/logo-team.png";
+import { searchProduct } from "../../redux/slides/ProductSlide";
 
 function Header() {
   const user = useSelector((state) => state.user);
+  const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -42,15 +45,22 @@ function Header() {
       )}
     </div>
   );
-
+  const onSearch = (e) => {
+    setSearch(e.target.value);
+    dispatch(searchProduct(search));
+  };
   return (
     <div className="header-container">
       <WrapperHeader className="header-wrapper">
         <Col span={6} className="header-left">
-          <WrapperTextHeader>Schwarzer Ritter</WrapperTextHeader>
+          <WrapperTextHeader>
+            <NavLink to="/">
+              <img src={logoTeam} style={{ width: 50 }} alt="logo" />
+            </NavLink>
+          </WrapperTextHeader>
         </Col>
         <Col span={11} className="header-middle">
-          <InputSearch size="large" placeholder="Tìm kiếm sản phẩm..." />
+          <InputSearch onChange={onSearch} size="large" placeholder="Tìm kiếm sản phẩm..." />
         </Col>
         <Col span={7} className="header-right">
           <WrapperHeaderAccount>

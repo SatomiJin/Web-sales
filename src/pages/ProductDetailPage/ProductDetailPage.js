@@ -1,12 +1,18 @@
+import { useNavigate, useParams } from "react-router-dom";
 import ProductDetail from "../../components/ProductDetail/ProductDetail";
 import "./ProductDetailPage.css";
+import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 
 function ProductDetailPage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
   return (
     <div className="product-detail-wrapper">
-      <h3>Trang chủ</h3>
+      <h3>
+        <ButtonComponent textButton="Trang chủ" onClick={() => navigate("/")} /> - Chi tiết sản phẩm
+      </h3>
       <div className="product-detail-component">
-        <ProductDetail />
+        <ProductDetail idProduct={id} />
       </div>
     </div>
   );

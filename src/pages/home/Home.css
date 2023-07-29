@@ -1,6 +1,6 @@
 .home-container{
     display: block;
-    margin-top: 71px;
+    margin-top: 85px;
 }
 /* ------------------------- */
 .product-type{
@@ -19,8 +19,7 @@
 
 .card-homepages{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    
     margin-top: 20px;
     flex-wrap: wrap;
     gap: 25px;
