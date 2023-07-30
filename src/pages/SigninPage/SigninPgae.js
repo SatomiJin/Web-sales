@@ -1,5 +1,5 @@
 import { Form, Image } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as UserService from "../../Services/UserService";
 import { UserMutationHook } from "../../hooks/UseMutationHook";
@@ -16,6 +16,8 @@ import { updateUser } from "../../redux/slides/UserSlide";
 import "./SigninPgae.css";
 
 function SigninPage() {
+  //location
+  const location = useLocation();
   //chuyển hướng
   const navigate = useNavigate();
   //dispatch
@@ -28,7 +30,11 @@ function SigninPage() {
   useEffect(() => {
     if (isSuccess) {
       message.success();
-      navigate("/");
+      if (location?.state) {
+        navigate(location.state);
+      } else {
+        navigate("/");
+      }
       localStorage.setItem("access_token", JSON.stringify(data?.access_token));
       if (data?.access_token) {
         const decode = jwt_decode(data?.access_token);

@@ -1,23 +1,27 @@
 import { Col, Image, InputNumber, Rate, Row } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import * as ProductService from "../../Services/ProductService";
 import imageProductSmall from "../../assets/images/products/samsunga23small.jpg";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import "./ProductDetail.css";
 import Loading from "../../loading/Loading";
+import { addOrderProduct } from "../../redux/slides/OrderSlide";
 
 const ProductDetail = ({ idProduct }) => {
   const [numProduct, setNumProduct] = useState(1);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
     setNumProduct(Number(e.target.value));
   };
   const user = useSelector((state) => state?.user);
-  console.log("user", user);
   //lấy thông tin product nha
   const fetchGetDetailProduct = async (context) => {
     const id = context?.queryKey && context?.queryKey[1];
@@ -38,7 +42,32 @@ const ProductDetail = ({ idProduct }) => {
   const { isLoading, data: productDetails } = useQuery(["products-details", idProduct], fetchGetDetailProduct, {
     enabled: !!idProduct,
   });
-
+  //thêm snar phẩm vào giỏ hàng
+  const handleAddOrder = () => {
+    if (!user?.id) {
+      navigate("/sign-in", { state: location.pathname });
+    } else {
+      //  name: { type: String, required: true },
+      //   amount: { type: Number, required: true },
+      //   price: { type: Number, required: true },
+      //   product: {
+      //     type: mongoose.Schema.Types.ObjectId,
+      //     ref: "Product",
+      //     required: true,
+      //   }
+      dispatch(
+        addOrderProduct({
+          orderItem: {
+            name: productDetails.data.name,
+            amount: numProduct,
+            image: productDetails.data.image,
+            price: productDetails.data.price,
+            product: productDetails.data._id,
+          },
+        })
+      );
+    }
+  };
   return (
     <Loading isLoading={isLoading}>
       <div className="product-detail-component-wrapper">
@@ -134,7 +163,12 @@ const ProductDetail = ({ idProduct }) => {
               </div>
             </div>
             <div className="buy-product-detail-wrapper">
-              <ButtonComponent className="btn-buy-product-detail" size="large" textButton="Chọn Mua"></ButtonComponent>
+              <ButtonComponent
+                className="btn-buy-product-detail"
+                size="large"
+                onClick={handleAddOrder}
+                textButton="Chọn Mua"
+              ></ButtonComponent>
               <ButtonComponent
                 className="btn-installment-purchase-product-detail"
                 size="large"

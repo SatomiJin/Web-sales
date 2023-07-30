@@ -2,10 +2,13 @@
     background: #f5f5fa;
     width: 100%; 
     height: 100vh;
+    margin-top: 90px;
+    scroll-behavior: smooth;
+   overflow-y: hidden;
 }
 .order-page-wrapper{
     height: 100%; 
-    width: 1270px;
+    width: 1200px;
     margin: 0 auto;
     
 }

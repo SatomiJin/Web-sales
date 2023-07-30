@@ -42,10 +42,10 @@ export const getAllTypeProduct = async () => {
   return res.data;
 };
 
-export const getAllProdctType = async (type) => {
+export const getAllProdctType = async (type, page, limit) => {
   if (type) {
     const res = await axios.get(
-      `${process.env.REACT_APP_API_KEY}product/detail-all-product?filter=type&filter=${type}`
+      `${process.env.REACT_APP_API_KEY}product/detail-all-product?filter=type&filter=${type}&limit=${limit}&page=${page}`
     );
 
     return res.data;

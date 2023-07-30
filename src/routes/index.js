@@ -69,11 +69,11 @@ export const routes = [
     isShowHeader: true,
     isPrivate: true,
   },
-  // {
-  //   path: "/order-page",
-  //   page: OrderPage,
-  //   isShowHeader: true,
-  // },
+  {
+    path: "/order-page",
+    page: OrderPage,
+    isShowHeader: true,
+  },
   {
     path: "*",
     page: NotFoundPage,

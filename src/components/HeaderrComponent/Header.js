@@ -17,6 +17,7 @@ function Header() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const order = useSelector((state) => state.order);
   const [loading, setLoading] = useState(false);
   const handleLogOutUser = () => {
     setLoading(true);
@@ -92,7 +93,7 @@ function Header() {
             </div>
           </WrapperHeaderAccount>
           <div className="cart">
-            <Badge count={5} size="small">
+            <Badge onClick={() => navigate("/order-page")} count={order?.orderItems.length} size="small">
               <ShoppingCartOutlined className="cart-icon" />
             </Badge>
             <span className="cart-text">Giỏ hàng</span>

@@ -45,10 +45,12 @@
 /* icon */
 .account-icon{
     font-size: 35px;
+    
 }
 .cart-icon{
     font-size: 35px;
     color: #fff;
+    cursor: pointer;
 }
 .drop-down{
     margin-left: 3px;
