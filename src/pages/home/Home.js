@@ -14,7 +14,7 @@ import useDebounce from "../../hooks/useDebounce";
 function Home() {
   const searchProduct = useSelector((state) => state.product.search);
   const searchDebounce = useDebounce(searchProduct, 1000);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(10);
   const [typeProducts, setTypeProducts] = useState([]);
 
   const fetchProductAll = async (context) => {
@@ -31,11 +31,7 @@ function Home() {
       setTypeProducts(res.data);
     }
   };
-  const {
-    isLoading,
-    data: products,
-    isPreviousData,
-  } = useQuery(["products", limit, searchDebounce], fetchProductAll, {
+  const { isLoading, data: products } = useQuery(["products", limit, searchDebounce], fetchProductAll, {
     retry: 3,
     retryDelay: 1000,
     keepPreviousData: true,
@@ -80,7 +76,7 @@ function Home() {
               className="button-show-more"
               textButton="Xem thêm"
               dash="true"
-              onClick={() => setLimit((prev) => prev + 6)}
+              onClick={() => setLimit((prev) => prev + 10)}
             />
           </div>
         </div>

@@ -291,7 +291,7 @@ function AdminUser() {
 
   //Hàm out form tạo user
   const handleCancel = () => {
-    // setIsOpenModal(false);
+    setIsOpenModal(false);
     setStateUser({
       name: "",
       email: "",
@@ -395,23 +395,25 @@ function AdminUser() {
       <Button className="btn-user-admin-management add" icon={<UserAddOutlined />} onClick={() => setIsOpenModal(true)}>
         Thêm
       </Button>
-      <div className="table-content-management-user">
-        <TableComponent
-          columns={columns}
-          data={dataUser}
-          style={{ width: "100%" }}
-          isLoading={isLoadingUpdate}
-          onRow={(record, rowIndex) => {
-            return {
-              onClick: (event) => {
-                setRowSelected(record._id);
-              }, // click row
-            };
-          }}
-        />
-      </div>
+      <Loading isLoading={isLoading}>
+        <div className="table-content-management-user">
+          <TableComponent
+            columns={columns}
+            data={dataUser}
+            style={{ width: "100%" }}
+            isLoading={isLoadingUpdate}
+            onRow={(record, rowIndex) => {
+              return {
+                onClick: (event) => {
+                  setRowSelected(record._id);
+                }, // click row
+              };
+            }}
+          />
+        </div>
+      </Loading>
       {/* bảng người dùng */}
-      <ModalComponent forceRender title="Tạo người dùng mới" open={isOpenModal} footer={null}>
+      <ModalComponent forceRender title="Tạo người dùng mới" open={isOpenModal} onCancel={handleCancel} footer={null}>
         <Loading isLoading={isLoading}>
           <Form
             form={form}

@@ -11,6 +11,7 @@ import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import "./ProductDetail.css";
 import Loading from "../../loading/Loading";
 import { addOrderProduct } from "../../redux/slides/OrderSlide";
+import { convertPrice } from "../../utils";
 
 const ProductDetail = ({ idProduct }) => {
   const [numProduct, setNumProduct] = useState(1);
@@ -68,6 +69,7 @@ const ProductDetail = ({ idProduct }) => {
       );
     }
   };
+  console.log("details", productDetails);
   return (
     <Loading isLoading={isLoading}>
       <div className="product-detail-component-wrapper">
@@ -134,7 +136,7 @@ const ProductDetail = ({ idProduct }) => {
               <span className="product-detail-sold"> | Đã bán {productDetails?.data?.sold || 1000} +</span>
             </div>
             <div className="price-product-detail">
-              <p className="price-product-detail-text">{productDetails?.data.price.toLocaleString()} đ</p>
+              <p className="price-product-detail-text">{convertPrice(productDetails?.data.price)}</p>
             </div>
             <div className="address-product-detail">
               <span>Giao đến: </span> &nbsp;

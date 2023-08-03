@@ -5,6 +5,7 @@ import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 
 function ProductDetailPage() {
   const { id } = useParams();
+  console.log(id);
   const navigate = useNavigate();
   return (
     <div className="product-detail-wrapper">

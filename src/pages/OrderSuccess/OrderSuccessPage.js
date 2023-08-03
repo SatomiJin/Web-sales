@@ -1,0 +1,64 @@
+import { convertPrice } from "../../utils";
+
+import Loading from "../../loading/Loading";
+import "./OrderSuccessPage.css";
+import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { orderContant } from "../../contants";
+
+const OrderSuccessPage = () => {
+  const order = useSelector((state) => state.order);
+  const user = useSelector((state) => state.user);
+  const location = useLocation();
+
+  const { state } = location;
+  return (
+    <div className="payment-success-page-container">
+      <h2 className="title-page">Đặt hàng thành công</h2>
+      <Loading isLoading={false}>
+        <div className="payment-success-page-wrapper">
+          <div className="wrapper-infor-payment-success">
+            <div>
+              <span className="label-payment-success">Phương thức giao hàng</span>
+              <div className="payment-success-lable">
+                <span>{orderContant.delivery[state?.delivery]}</span>
+              </div>
+            </div>
+            <br />
+            <div>
+              <span className="label-payment-success">Phương thức thanh toán</span>
+              <div className="payment-success-lable">
+                <span>{orderContant.payment[state?.payment]}</span>
+              </div>
+            </div>
+            <div className="wrapper-info-payment-success">
+              {state?.orders?.map((order) => {
+                return (
+                  <div className="wrapper-order-items-success" key={order?.product}>
+                    <div className="wrapper-order-image-name-success">
+                      <img src={order?.image} className="order-image-order-page-success" alt="orderimage" />
+                      <div className="order-name-order-page-success">{order?.name}</div>
+                    </div>
+                    <div className="order-count-order-page-success">
+                      <span>
+                        <span className="order-count-span-order-page-success">
+                          Giá tiền: {convertPrice(order?.price)}
+                        </span>
+                      </span>
+                      <span>
+                        <span className="order-count-span-order-page-success">Số lượng: {order?.amount}</span>
+                      </span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="total-price-payment-success">Tổng tiền: {convertPrice(state.totalPriceMemo)}</div>
+          </div>
+        </div>
+      </Loading>
+    </div>
+  );
+};
+
+export default OrderSuccessPage;

@@ -15,6 +15,7 @@ import { searchProduct } from "../../redux/slides/ProductSlide";
 function Header() {
   const user = useSelector((state) => state.user);
   const [search, setSearch] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const order = useSelector((state) => state.order);
@@ -31,21 +32,38 @@ function Header() {
     <div>
       {user?.isAdmin ? (
         <>
-          <Button onClick={() => navigate("/profile-user")}>Thông tin người dùng</Button>
+          <Button onClick={() => handleClickNavigate("profile")}>Thông tin người dùng</Button>
           <br />
-          <Button onClick={() => navigate("/system/admin")}>Quản lý hệ thống</Button>
+          <Button onClick={() => handleClickNavigate("order")}>Đơn hàng của tôi</Button>
           <br />
-          <Button onClick={handleLogOutUser}>Đăng xuất</Button>
+          <Button onClick={() => handleClickNavigate("admin")}>Quản lý hệ thống</Button>
+          <br />
+          <Button onClick={() => handleClickNavigate("log-out")}>Đăng xuất</Button>
         </>
       ) : (
         <>
           <Button onClick={() => navigate("/profile-user")}>Thông tin người dùng</Button>
+          <br />
+          <Button onClick={() => navigate("/my-orders")}>Đơn hàng của tôi</Button>
           <br />
           <Button onClick={handleLogOutUser}>Đăng xuất</Button>
         </>
       )}
     </div>
   );
+  const handleClickNavigate = (type) => {
+    if (type === "profile") {
+      navigate("/profile-user");
+    } else if (type === "admin") {
+      navigate("/system/admin");
+    } else if (type === "order") {
+      navigate("/my-orders");
+    } else {
+      handleLogOutUser();
+    }
+    setIsOpen(false);
+  };
+
   const onSearch = (e) => {
     setSearch(e.target.value);
     dispatch(searchProduct(search));
@@ -70,8 +88,8 @@ function Header() {
               {user?.name ? (
                 <>
                   <Loading isLoading={loading}>
-                    <Popover content={content} title="Menu" trigger="click">
-                      <button type="button" className="btn-account">
+                    <Popover content={content} title="Menu" trigger="click" open={isOpen}>
+                      <button type="button" className="btn-account" onClick={() => setIsOpen(!isOpen)}>
                         {user?.avatar ? (
                           <img src={user?.avatar} className="avatar-user-header" alt="avatar" />
                         ) : (

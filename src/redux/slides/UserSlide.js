@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
+  id: "",
   name: "",
   email: "",
   phone: "",
@@ -8,6 +9,7 @@ const initialState = {
   avatar: "",
   isAdmin: false,
   access_token: "",
+  city: "",
 };
 
 export const UserSlide = createSlice({
@@ -24,6 +26,7 @@ export const UserSlide = createSlice({
         avatar = "",
         isAdmin = false,
         access_token = "",
+        city = "",
       } = action.payload;
       state.name = name;
       state.email = email;
@@ -33,6 +36,7 @@ export const UserSlide = createSlice({
       state.id = _id;
       state.isAdmin = isAdmin;
       state.access_token = access_token;
+      state.city = city;
     },
     resetUser: (state) => {
       state.name = "";
@@ -43,6 +47,7 @@ export const UserSlide = createSlice({
       state.id = "";
       state.isAdmin = false;
       state.access_token = "";
+      state.city = "";
     },
   },
 });

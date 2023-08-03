@@ -12,7 +12,7 @@ import {
   increaseAmount,
   removeAllOrderProduct,
   removeOrderProduct,
-  //   selectedOrder,
+  selectedOrder,
 } from "../../redux/slides/OrderSlide";
 import ModalComponent from "../../components/Modal/ModalComponent";
 import { convertPrice } from "../../utils";
@@ -22,8 +22,7 @@ import * as UserService from "../../Services/UserService";
 import Loading from "../../loading/Loading";
 import * as message from "../../Message/Message";
 import { updateUser } from "../../redux/slides/UserSlide";
-//import StepComponent from "../../components/StepConponent/StepComponent";
-
+import StepsComponent from "../../components/StepsComponent/StepsComponent";
 const OrderPage = () => {
   const order = useSelector((state) => state.order);
   const user = useSelector((state) => state.user);
@@ -77,9 +76,9 @@ const OrderPage = () => {
     }
   };
 
-  //   useEffect(() => {
-  //     dispatch(selectedOrder({ listChecked }));
-  //   }, [listChecked]);
+  useEffect(() => {
+    dispatch(selectedOrder({ listChecked }));
+  }, [listChecked]);
 
   useEffect(() => {
     form.setFieldsValue(stateUserDetails);
@@ -101,14 +100,14 @@ const OrderPage = () => {
   };
 
   const priceMemo = useMemo(() => {
-    const result = order?.orderItemsSlected?.reduce((total, cur) => {
+    const result = order?.orderItemsSelected?.reduce((total, cur) => {
       return total + cur.price * cur.amount;
     }, 0);
     return result;
   }, [order]);
 
   const priceDiscountMemo = useMemo(() => {
-    const result = order?.orderItemsSlected?.reduce((total, cur) => {
+    const result = order?.orderItemsSelected?.reduce((total, cur) => {
       const totalDiscount = cur.discount ? cur.discount : 0;
       return total + (priceMemo * (totalDiscount * cur.amount)) / 100;
     }, 0);
@@ -119,9 +118,9 @@ const OrderPage = () => {
   }, [order]);
 
   const diliveryPriceMemo = useMemo(() => {
-    if (priceMemo >= 20000 && priceMemo < 500000) {
+    if (priceMemo >= 2000000 && priceMemo < 5000000) {
       return 10000;
-    } else if (priceMemo >= 500000 || order?.orderItemsSlected?.length === 0) {
+    } else if (priceMemo >= 5000000 || order?.orderItemsSelected?.length === 0) {
       return 0;
     } else {
       return 20000;
@@ -139,7 +138,7 @@ const OrderPage = () => {
   };
 
   const handleAddCard = () => {
-    if (!order?.orderItemsSlected?.length) {
+    if (!order?.orderItemsSelected?.length) {
       message.error("Vui lòng chọn sản phẩm");
     } else if (!user?.phone || !user.address || !user.name || !user.city) {
       setIsOpenModalUpdateInfo(true);
@@ -149,8 +148,9 @@ const OrderPage = () => {
   };
 
   const mutationUpdate = UserMutationHook((data) => {
-    const { id, token, ...rests } = data;
-    const res = UserService.updateUser(id, { ...rests }, token);
+    const { id, ...rests } = data;
+    console.log("data", data);
+    const res = UserService.updateUser(id, { ...rests });
     return res;
   });
 
@@ -190,37 +190,39 @@ const OrderPage = () => {
   const itemsDelivery = [
     {
       title: "20.000 VND",
-      description: "Dưới 200.000 VND",
+      description: "Dưới 2.000.000 VND",
     },
     {
       title: "10.000 VND",
-      description: "Từ 200.000 VND đến dưới 500.000 VND",
+      description: "Từ 2.000.000 VND đến dưới 5.000.000 VND",
     },
     {
       title: "Free ship",
-      description: "Trên 500.000 VND",
+      description: "Trên 5.000.000 VND",
     },
   ];
+
   return (
     <div className="order-page-container">
       <div className="order-page-wrapper">
         <h3>Giỏ hàng</h3>
         <div className="order-page-cover">
           <div className="order-page-wrapper-left">
-            <h4>Phí giao hàng</h4>
             <div className="order-wrapper-header-delivery">
-              {/* <StepComponent
+              <p>Phí giao hàng</p>
+              {convertPrice(diliveryPriceMemo)}
+              <StepsComponent
                 items={itemsDelivery}
                 current={
                   diliveryPriceMemo === 10000
                     ? 2
                     : diliveryPriceMemo === 20000
                     ? 1
-                    : order.orderItemsSlected.length === 0
+                    : order.orderItemsSelected.length === 0
                     ? 0
                     : 3
                 }
-              /> */}
+              />
             </div>
             <div className="wrapper-header-styte">
               <span style={{ display: "inline-block", width: "390px" }}>
@@ -301,8 +303,10 @@ const OrderPage = () => {
               <div className="wrapper-info">
                 <div>
                   <span>Địa chỉ: </span>
-                  <span style={{ fontWeight: "bold" }}>{`${user?.address} ${user?.city}`} </span>
-                  <span onClick={handleChangeAddress} style={{ color: "#9255FD", cursor: "pointer" }}>
+                  <span style={{ fontWeight: "bold" }}>{`${user?.address} `}, </span>
+                  <span className="user-address-order-page">{`${user?.city || "Chưa có"}`}</span>
+                  &nbsp; &nbsp;
+                  <span onClick={handleChangeAddress} style={{ color: "#75C2F6", cursor: "pointer" }}>
                     Thay đổi
                   </span>
                 </div>
@@ -314,7 +318,7 @@ const OrderPage = () => {
                 </div>
                 <div className="wrapper-info-discount">
                   <span>Giảm giá</span>
-                  <span>{convertPrice(priceDiscountMemo)}</span>
+                  <span> - {convertPrice(priceDiscountMemo)}</span>
                 </div>
                 <div className="wrapper-info-delivery-charges">
                   <span>Phí giao hàng</span>
@@ -330,13 +334,13 @@ const OrderPage = () => {
                   <span style={{ color: "#000", fontSize: "11px" }}>(Đã bao gồm VAT nếu có)</span>
                 </span>
               </div>
+              <ButtonComponent
+                className="add-card-btn"
+                onClick={() => handleAddCard()}
+                size={40}
+                textButton="Mua hàng"
+              />
             </div>
-            <ButtonComponent
-              className="add-card-btn"
-              onClick={() => handleAddCard()}
-              size={40}
-              textbutton="Mua hàng"
-            ></ButtonComponent>
           </div>
         </div>
       </div>

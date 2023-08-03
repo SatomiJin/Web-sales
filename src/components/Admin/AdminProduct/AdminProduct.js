@@ -261,7 +261,6 @@ function AdminProduct() {
     products?.data?.map((product) => {
       return { ...product, key: product._id };
     });
-  console.log("dataTable", products);
   useEffect(() => {
     if (isSuccess && data?.status === "Ok") {
       message.success();
