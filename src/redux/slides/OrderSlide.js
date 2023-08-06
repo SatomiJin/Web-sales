@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { message } from "antd";
 
 const initialState = {
   orderItems: [],
@@ -14,6 +15,8 @@ const initialState = {
   paiAt: "",
   isDelivered: false,
   delivereAt: "",
+  isSuccessOrder: false,
+  isErrorOrder: false,
 };
 
 export const OrderSlide = createSlice({
@@ -24,9 +27,21 @@ export const OrderSlide = createSlice({
       const { orderItem } = action.payload;
       const itemOrder = state?.orderItems?.find((item) => item?.product === orderItem.product);
       if (itemOrder) {
-        itemOrder.amount += orderItem?.amount;
+        if (orderItem.amount <= orderItem.countInStock) {
+          itemOrder.amount += orderItem?.amount;
+          state.isSuccessOrder = true;
+          message.success("Sản phẩm đã được thêm vào giỏ hàng");
+        } else {
+          state.isErrorOrder = true;
+          message.error("Số lượng sản phẩm trong kho không đủ");
+        }
       } else {
-        state.orderItems.push(orderItem);
+        if (orderItem.amount <= orderItem.countInStock) {
+          state.orderItems.push(orderItem);
+          message.success("Sản phẩm đã được thêm vào giỏ hàng");
+        } else {
+          message.error("Thao tác thất bại");
+        }
       }
     },
     increaseAmount: (state, action) => {

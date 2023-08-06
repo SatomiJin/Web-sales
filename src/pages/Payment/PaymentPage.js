@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { PayPalButton } from "react-paypal-button";
+import { PayPalButton } from "react-paypal-button-v2";
 
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import ModalComponent from "../../components/Modal/ModalComponent";
@@ -11,13 +11,14 @@ import InputComponent from "../../components/InputComponent/InputComponent";
 import * as message from "../../Message/Message";
 import * as OrderService from "../../Services/OrderService";
 import * as UserService from "../../Services/UserService";
-//import * as PaymentService from "../../services/PaymentService";
+import * as PaymentService from "../../Services/PaymentServiece";
 import { convertPrice } from "../../utils";
 import { UserMutationHook } from "../../hooks/UseMutationHook";
 import { updateUser } from "../../redux/slides/UserSlide";
 import { removeAllOrderProduct } from "../../redux/slides/OrderSlide";
 import Loading from "../../loading/Loading";
 import "./PaymentPage.css";
+
 const PaymentPage = () => {
   const order = useSelector((state) => state.order);
   const user = useSelector((state) => state.user);
@@ -90,6 +91,30 @@ const PaymentPage = () => {
   }, [priceMemo, priceDiscountMemo, diliveryPriceMemo]);
 
   const handleAddOrder = () => {
+    // if (
+    //   order?.orderItemsSelected &&
+    //   user?.name &&
+    //   user?.address &&
+    //   user?.phone &&
+    //   user?.city &&
+    //   priceMemo &&
+    //   user?.id
+    // ) {
+    //   // eslint-disable-next-line no-unused-expressions
+    //   mutationAddOrder.mutate({
+    //     orderItems: order?.orderItemsSelected,
+    //     fullName: user?.name,
+    //     address: user?.address,
+    //     phone: user?.phone,
+    //     city: user?.city,
+    //     paymentMethod: payment,
+    //     itemsPrice: priceMemo,
+    //     shippingPrice: diliveryPriceMemo,
+    //     totalPrice: totalPriceMemo,
+    //     user: user?.id,
+    //   });
+    // }
+    //-------------------------
     if (
       order?.orderItemsSelected &&
       user?.name &&
@@ -111,35 +136,9 @@ const PaymentPage = () => {
         shippingPrice: diliveryPriceMemo,
         totalPrice: totalPriceMemo,
         user: user?.id,
+        email: user?.email,
       });
     }
-    //-------------------------
-    // if (
-    //   user?.access_token &&
-    //   order?.orderItemsSlected &&
-    //   user?.name &&
-    //   user?.address &&
-    //   user?.phone &&
-    //   user?.city &&
-    //   priceMemo &&
-    //   user?.id
-    // ) {
-    //   // eslint-disable-next-line no-unused-expressions
-    //   mutationAddOrder.mutate({
-    //     token: user?.access_token,
-    //     orderItems: order?.orderItemsSlected,
-    //     fullName: user?.name,
-    //     address: user?.address,
-    //     phone: user?.phone,
-    //     city: user?.city,
-    //     paymentMethod: payment,
-    //     itemsPrice: priceMemo,
-    //     shippingPrice: diliveryPriceMemo,
-    //     totalPrice: totalPriceMemo,
-    //     user: user?.id,
-    //     email: user?.email,
-    //   });
-    // }
   };
 
   const mutationUpdate = UserMutationHook((data) => {
@@ -154,8 +153,8 @@ const PaymentPage = () => {
     return res;
   });
 
-  const { isLoading, data } = mutationUpdate;
   const { data: dataAdd, isLoading: isLoadingAddOrder, isSuccess, isError } = mutationAddOrder;
+  const { isLoading, data } = mutationUpdate;
 
   useEffect(() => {
     if (isSuccess && dataAdd?.status === "OK") {
@@ -163,6 +162,7 @@ const PaymentPage = () => {
       order?.orderItemsSelected?.forEach((element) => {
         arrayOrdered.push(element.product);
       });
+
       dispatch(removeAllOrderProduct({ listChecked: arrayOrdered }));
       message.success("Đặt hàng thành công");
       navigate("/payment-success", {
@@ -208,6 +208,23 @@ const PaymentPage = () => {
   //     });
   //   };
 
+  const onSuccessPaypal = (details, data) => {
+    mutationAddOrder.mutate({
+      orderItems: order?.orderItemsSelected,
+      fullName: user?.name,
+      address: user?.address,
+      phone: user?.phone,
+      city: user?.city,
+      paymentMethod: payment,
+      itemsPrice: priceMemo,
+      shippingPrice: diliveryPriceMemo,
+      totalPrice: totalPriceMemo,
+      user: user?.id,
+      email: user?.email,
+      isPaid: true,
+      paidAt: details.update_time,
+    });
+  };
   const handleUpdateInforUser = () => {
     const { name, address, city, phone } = stateUserDetails;
     if (name && address && city && phone) {
@@ -237,17 +254,25 @@ const PaymentPage = () => {
     setPayment(e.target.value);
   };
 
-  //   const addPaypalScript = async () => {
-  //     const { data } = await PaymentService.getConfig();
-  //     const script = document.createElement("script");
-  //     script.type = "text/javascript";
-  //     script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
-  //     script.async = true;
-  //     script.onload = () => {
-  //       setSdkReady(true);
-  //     };
-  //     document.body.appendChild(script);
-  //   };
+  const addPaypalScript = async () => {
+    const { data } = await PaymentService.getConfig();
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = `https://www.paypal.com/sdk/js?client-id=${data}`;
+    script.async = true;
+    script.onload = () => {
+      setSdkReady(true);
+    };
+    document.body.appendChild(script);
+  };
+
+  useEffect(() => {
+    if (!window.paypal) {
+      addPaypalScript();
+    } else {
+      setSdkReady(true);
+    }
+  }, []);
 
   //   useEffect(() => {
   //     if (!window.paypal) {
@@ -329,17 +354,17 @@ const PaymentPage = () => {
               {payment === "paypal" && sdkReady ? (
                 <div style={{ width: "320px" }}>
                   <PayPalButton
-                    amount={Math.round(totalPriceMemo / 30000)}
+                    amount={priceMemo / 20000}
                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                    //onSuccess={onSuccessPaypal}
-                    onError={() => {
-                      alert("Error");
+                    onSuccess={onSuccessPaypal}
+                    onError={(e) => {
+                      alert(e);
                     }}
                   />
                 </div>
               ) : (
                 <ButtonComponent
-                  onClick={() => handleAddOrder()}
+                  onClick={handleAddOrder}
                   className="btn-order-payment"
                   size={40}
                   textButton="Đặt hàng"

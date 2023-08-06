@@ -34,7 +34,7 @@ function Header() {
         <>
           <Button onClick={() => handleClickNavigate("profile")}>Thông tin người dùng</Button>
           <br />
-          <Button onClick={() => handleClickNavigate("order")}>Đơn hàng của tôi</Button>
+          <Button onClick={() => handleClickNavigate(`order`)}>Đơn hàng của tôi</Button>
           <br />
           <Button onClick={() => handleClickNavigate("admin")}>Quản lý hệ thống</Button>
           <br />
@@ -42,22 +42,27 @@ function Header() {
         </>
       ) : (
         <>
-          <Button onClick={() => navigate("/profile-user")}>Thông tin người dùng</Button>
+          <Button onClick={() => navigate("profile")}>Thông tin người dùng</Button>
           <br />
-          <Button onClick={() => navigate("/my-orders")}>Đơn hàng của tôi</Button>
+          <Button onClick={() => navigate("order")}>Đơn hàng của tôi</Button>
           <br />
-          <Button onClick={handleLogOutUser}>Đăng xuất</Button>
+          <Button onClick={() => navigate("log-out")}>Đăng xuất</Button>
         </>
       )}
     </div>
   );
+
   const handleClickNavigate = (type) => {
     if (type === "profile") {
       navigate("/profile-user");
     } else if (type === "admin") {
       navigate("/system/admin");
     } else if (type === "order") {
-      navigate("/my-orders");
+      navigate("/my-orders", {
+        state: {
+          id: user?.id,
+        },
+      });
     } else {
       handleLogOutUser();
     }

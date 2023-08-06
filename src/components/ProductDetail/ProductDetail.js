@@ -2,16 +2,17 @@ import { Col, Image, InputNumber, Rate, Row } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as ProductService from "../../Services/ProductService";
 import imageProductSmall from "../../assets/images/products/samsunga23small.jpg";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
-import "./ProductDetail.css";
 import Loading from "../../loading/Loading";
 import { addOrderProduct } from "../../redux/slides/OrderSlide";
 import { convertPrice } from "../../utils";
+import "./ProductDetail.css";
+import * as message from "../../Message/Message";
 
 const ProductDetail = ({ idProduct }) => {
   const [numProduct, setNumProduct] = useState(1);
@@ -23,6 +24,7 @@ const ProductDetail = ({ idProduct }) => {
     setNumProduct(Number(e.target.value));
   };
   const user = useSelector((state) => state?.user);
+  const order = useSelector((state) => state.order);
   //lấy thông tin product nha
   const fetchGetDetailProduct = async (context) => {
     const id = context?.queryKey && context?.queryKey[1];
@@ -56,10 +58,12 @@ const ProductDetail = ({ idProduct }) => {
       //     ref: "Product",
       //     required: true,
       //   }
+
       dispatch(
         addOrderProduct({
           orderItem: {
             name: productDetails.data.name,
+            countInStock: productDetails.data.countInStock,
             amount: numProduct,
             image: productDetails.data.image,
             price: productDetails.data.price,
@@ -69,7 +73,7 @@ const ProductDetail = ({ idProduct }) => {
       );
     }
   };
-  console.log("details", productDetails);
+  console.log(productDetails);
   return (
     <Loading isLoading={isLoading}>
       <div className="product-detail-component-wrapper">
@@ -165,12 +169,14 @@ const ProductDetail = ({ idProduct }) => {
               </div>
             </div>
             <div className="buy-product-detail-wrapper">
-              <ButtonComponent
-                className="btn-buy-product-detail"
-                size="large"
-                onClick={handleAddOrder}
-                textButton="Chọn Mua"
-              ></ButtonComponent>
+              <div>
+                <ButtonComponent
+                  className="btn-buy-product-detail"
+                  size="large"
+                  onClick={handleAddOrder}
+                  textButton="Chọn Mua"
+                ></ButtonComponent>
+              </div>
               <ButtonComponent
                 className="btn-installment-purchase-product-detail"
                 size="large"
