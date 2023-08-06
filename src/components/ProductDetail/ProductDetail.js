@@ -2,7 +2,7 @@ import { Col, Image, InputNumber, Rate, Row } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as ProductService from "../../Services/ProductService";
@@ -10,15 +10,18 @@ import imageProductSmall from "../../assets/images/products/samsunga23small.jpg"
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
 import Loading from "../../loading/Loading";
 import { addOrderProduct } from "../../redux/slides/OrderSlide";
-import { convertPrice } from "../../utils";
+import { convertPrice, initFacebookSDK } from "../../utils";
 import "./ProductDetail.css";
 import * as message from "../../Message/Message";
+import LikeButton from "../LikeButton/LikeButton";
+import Comments from "../Comments/Comments";
 
 const ProductDetail = ({ idProduct }) => {
   const [numProduct, setNumProduct] = useState(1);
   const navigate = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const { state } = useLocation();
 
   const onChange = (e) => {
     setNumProduct(Number(e.target.value));
@@ -27,12 +30,16 @@ const ProductDetail = ({ idProduct }) => {
   const order = useSelector((state) => state.order);
   //lấy thông tin product nha
   const fetchGetDetailProduct = async (context) => {
-    const id = context?.queryKey && context?.queryKey[1];
-    if (id) {
-      const res = ProductService.getDetailProduct(id);
+    const name = context?.queryKey && context?.queryKey[1];
+    if (name) {
+      const res = ProductService.getDetailWithName(state);
       return res;
     }
   };
+
+  useEffect(() => {
+    initFacebookSDK();
+  }, []);
 
   //------------------
   // const renderStars = (num) => {
@@ -50,15 +57,6 @@ const ProductDetail = ({ idProduct }) => {
     if (!user?.id) {
       navigate("/sign-in", { state: location.pathname });
     } else {
-      //  name: { type: String, required: true },
-      //   amount: { type: Number, required: true },
-      //   price: { type: Number, required: true },
-      //   product: {
-      //     type: mongoose.Schema.Types.ObjectId,
-      //     ref: "Product",
-      //     required: true,
-      //   }
-
       dispatch(
         addOrderProduct({
           orderItem: {
@@ -73,7 +71,7 @@ const ProductDetail = ({ idProduct }) => {
       );
     }
   };
-  console.log(productDetails);
+
   return (
     <Loading isLoading={isLoading}>
       <div className="product-detail-component-wrapper">
@@ -147,6 +145,11 @@ const ProductDetail = ({ idProduct }) => {
               <span className="address-product-detail-text">{user.address}</span>-{" "}
               <span className="address-product-detail-change-address">Đổi địa chỉ</span>
             </div>
+            <LikeButton
+              dataHref={
+                process.env.REACT_APP_IS_LOCAL ? "https://developers.facebook.com/docs/plugins/" : window.location.href
+              }
+            />
             <div className="quantity-product-detail">
               <p>Số lượng</p>
               <div className="quantity-product-detail-wrapper">
@@ -184,6 +187,17 @@ const ProductDetail = ({ idProduct }) => {
               ></ButtonComponent>
             </div>
           </Col>
+          <div className="fb-comment-details-page">
+            <Comments
+              dataHref={
+                process.env.REACT_APP_IS_LOCAL
+                  ? "https://developers.facebook.com/docs/plugins/comments#configurator"
+                  : window.location.href
+              }
+              width="1010"
+              dataNumposts={5}
+            />
+          </div>
         </Row>
       </div>
     </Loading>

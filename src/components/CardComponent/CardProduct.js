@@ -8,18 +8,18 @@ import { convertPrice } from "../../utils";
 function CardProduct(props) {
   const { image, name, price, rating, type, discount, sold, id, countInStock } = props;
   const navigate = useNavigate();
-  const handleDetailProduct = (id) => {
-    navigate(`/product-detail/${id}`);
+  const handleDetailProduct = (name) => {
+    navigate(`/product-detail/${name.toLowerCase().replace(/\s/g, "-")}`, { state: name });
   };
   return (
     <Card
-      style={countInStock === 0 ? { opacity: 0.3, cursor: "not-allowed" } : {}}
+      style={countInStock === 0 ? { opacity: 0.3 } : {}}
       className="cart-items"
       hoverable
       headStyle={{ width: "200px", height: "200px" }}
       bodyStyle={{ padding: 10 }}
       cover={<img alt="example" src={image} />}
-      onClick={() => countInStock !== 0 && handleDetailProduct(id)}
+      onClick={() => handleDetailProduct(name)}
     >
       <img className="logo-web" src={logo} alt="logo" />
       <div className="products-name">{name}</div>

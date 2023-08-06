@@ -23,6 +23,5 @@ export const cancelOrder = async (id, orderItems, userId) => {
 //get detail
 export const getDetailsOrders = async (id) => {
   const res = await axios.get(`${process.env.REACT_APP_API_KEY}order/get-details-order/${id}`);
-  console.log("res", res);
   return res.data;
 };

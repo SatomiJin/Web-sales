@@ -44,7 +44,6 @@ const MyOrderPage = () => {
     mutation.mutate({ id: order._id, orderItems: order?.orderItems, userId: user.id });
   };
   const { isLoading: isLoadingCancel, isSuccess: isSuccessCancel, isError: isErrorCancle, data: dataCancel } = mutation;
-  console.log("data", data);
   useEffect(() => {
     if (isSuccessCancel && dataCancel?.status === "OK") {
       message.success("xóa đơn hàng thành công");
@@ -76,7 +75,6 @@ const MyOrderPage = () => {
 
           <div className="wrapper-list-order">
             {data?.map((order) => {
-              console.log("order", order?._id);
               return (
                 <div className="wrapper-items-order" key={order?._id}>
                   <div className="wrapper-status-orders">

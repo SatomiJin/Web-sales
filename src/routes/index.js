@@ -79,8 +79,13 @@ export const routes = [
     page: MyOrderPage,
     isShowHeader: true,
   },
+  // {
+  //   path: "/details-order/:id",
+  //   page: DetailsOrderPage,
+  //   isShowHeader: true,
+  // },
   {
-    path: "/details-order/:id",
+    path: "/details-order/:name",
     page: DetailsOrderPage,
     isShowHeader: true,
   },

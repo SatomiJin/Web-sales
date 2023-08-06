@@ -307,7 +307,7 @@ const PaymentPage = () => {
                   <span className="payment-lable">Chọn phương thức thanh toán</span>
                   <Radio.Group className="wrapper-radio-payment" onChange={handlePayment} value={payment}>
                     <Radio value="later_money"> Thanh toán tiền mặt khi nhận hàng</Radio>
-                    <Radio value="paypal"> Thanh toán tiền bằng paypal</Radio>
+                    <Radio value="paypal"> Thanh toán online với paypal</Radio>
                   </Radio.Group>
                 </div>
               </div>
@@ -354,7 +354,7 @@ const PaymentPage = () => {
               {payment === "paypal" && sdkReady ? (
                 <div style={{ width: "320px" }}>
                   <PayPalButton
-                    amount={priceMemo / 20000}
+                    amount={Math.round(priceMemo / 23000)}
                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                     onSuccess={onSuccessPaypal}
                     onError={(e) => {

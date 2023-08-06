@@ -51,3 +51,8 @@ export const getAllProdctType = async (type, page, limit) => {
     return res.data;
   }
 };
+
+export const getDetailWithName = async (name) => {
+  const res = await axios.get(`${process.env.REACT_APP_API_KEY}product/get-details-with-name/${name}`);
+  return res.data;
+};

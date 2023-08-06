@@ -345,7 +345,6 @@ function AdminProduct() {
   };
 
   const onFinish = () => {
-    console.log("state", stateProduct);
     mutation.mutate(stateProduct, {
       onSettled: () => {
         queryProduct.refetch();

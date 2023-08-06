@@ -22,14 +22,12 @@ function TypeProductPage() {
     total: 1,
   });
   const onChange = (current, pageSize) => {
-    console.log({ current, pageSize });
     setPaginate({ ...paginate, page: current - 1, limit: pageSize });
   };
 
   const fetchProductType = async (type, page, limit) => {
     setIsLoading(true);
     const res = await ProductService.getAllProdctType(type, page, limit);
-    console.log(res);
     if (res?.status === "OK") {
       setIsLoading(false);
       setProducts(res.data);
