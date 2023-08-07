@@ -12,7 +12,6 @@ import Loading from "../../loading/Loading";
 import { addOrderProduct } from "../../redux/slides/OrderSlide";
 import { convertPrice, initFacebookSDK } from "../../utils";
 import "./ProductDetail.css";
-import * as message from "../../Message/Message";
 import LikeButton from "../LikeButton/LikeButton";
 import Comments from "../Comments/Comments";
 
@@ -36,7 +35,7 @@ const ProductDetail = ({ idProduct }) => {
       return res;
     }
   };
-
+  console.log(window.location.href, process.env.REACT_APP_IS_LOCAL);
   useEffect(() => {
     initFacebookSDK();
   }, []);
@@ -195,7 +194,6 @@ const ProductDetail = ({ idProduct }) => {
                   : window.location.href
               }
               width="1010"
-              dataNumposts={5}
             />
           </div>
         </Row>

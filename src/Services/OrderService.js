@@ -20,8 +20,15 @@ export const cancelOrder = async (id, orderItems, userId) => {
   return res.data;
 };
 
-//get detail
+//láy thông tin hóa đơn
 export const getDetailsOrders = async (id) => {
   const res = await axios.get(`${process.env.REACT_APP_API_KEY}order/get-details-order/${id}`);
+  console.log("res", res.data);
+  return res.data;
+};
+
+//lấy tất cả hóa Đơn
+export const getAllOrder = async () => {
+  const res = await axios.get(`${process.env.REACT_APP_API_KEY}order/get-all-order`);
   return res.data;
 };

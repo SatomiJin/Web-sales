@@ -16,6 +16,7 @@ import { getBase64 } from "../../utils";
 function ProfileUser() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
+
   const [email, setEmail] = useState(user?.email);
   const [name, setName] = useState(user?.name);
   const [address, setAddress] = useState(user?.address);

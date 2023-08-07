@@ -1,14 +1,16 @@
 import "./AdminPage.css";
 import React, { useState } from "react";
-import { AppstoreOutlined, UserOutlined, SettingOutlined } from "@ant-design/icons";
+import { AppstoreOutlined, UserOutlined, ExceptionOutlined } from "@ant-design/icons";
 import { Menu, Switch } from "antd";
 import { getItem } from "../../utils";
 import AdminUser from "../../components/Admin/AdminUser/AdminUser";
 import AdminProduct from "../../components/Admin/AdminProduct/AdminProduct";
+import AdminOrder from "../../components/Admin/AdminOrder/AdminOrder";
 const items = [
   getItem("", ""),
   getItem("Quản lý người dùng", "user", <UserOutlined />),
   getItem("Quản lý sản phẩm", "product", <AppstoreOutlined />),
+  getItem("Quản lý đơn hàng", "order", <ExceptionOutlined />),
 ];
 function AdminPage() {
   const [theme, setTheme] = useState("dark");
@@ -26,6 +28,8 @@ function AdminPage() {
         return <AdminUser />;
       case "product":
         return <AdminProduct />;
+      case "order":
+        return <AdminOrder />;
       default:
         return;
     }

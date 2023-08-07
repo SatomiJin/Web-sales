@@ -107,7 +107,7 @@ function AdminUser() {
     isError: isErrorDeleted,
   } = mutationDelete;
 
-  //lấy thông tin người dùng
+  //lấy thông tin người dùngaa
   const fetchGetDetailsUser = async (rowSelected) => {
     const res = await UserService.getDetailUser(rowSelected);
     if (res) {

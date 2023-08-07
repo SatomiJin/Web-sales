@@ -53,12 +53,12 @@ function App() {
           <Routes>
             {routes.map((route, index) => {
               const Pages = route.page;
-              const isCheckAuth = !route.isPrivate || user?.isAdmin;
+              const isCheckAuth = route.isPrivate || user?.isAdmin;
               const Layouts = route.isShowHeader ? DefaultComponent : Fragment;
               return (
                 <Route
                   key={index}
-                  path={isCheckAuth ? route.path : ""}
+                  path={isCheckAuth ? route.path : route.path}
                   element={
                     <Layouts>
                       <Pages />

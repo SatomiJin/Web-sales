@@ -42,11 +42,11 @@ function Header() {
         </>
       ) : (
         <>
-          <Button onClick={() => navigate("profile")}>Thông tin người dùng</Button>
+          <Button onClick={() => handleClickNavigate("profile")}>Thông tin người dùng</Button>
           <br />
-          <Button onClick={() => navigate("order")}>Đơn hàng của tôi</Button>
+          <Button onClick={() => handleClickNavigate("order")}>Đơn hàng của tôi</Button>
           <br />
-          <Button onClick={() => navigate("log-out")}>Đăng xuất</Button>
+          <Button onClick={() => handleClickNavigate("log-out")}>Đăng xuất</Button>
         </>
       )}
     </div>

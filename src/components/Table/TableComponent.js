@@ -6,6 +6,7 @@ import { DownloadTableExcel } from "react-export-table-to-excel";
 import "./TableComponent.css";
 import Loading from "../../loading/Loading";
 import ButtonComponent from "../ButtonComponent/ButtonComponent";
+import PieChartComponent from "../Admin/AdminOrder/PieChart/PieChartComponent";
 
 function TableComponent(props) {
   const tableRef = useRef(null);
@@ -38,14 +39,15 @@ function TableComponent(props) {
             </Space>
           </div>
         )}
-        <DownloadTableExcel filename="table-xls" sheet="users" currentTableRef={tableRef.current}>
+        <DownloadTableExcel filename="Schwarzer-xls" sheet="Schwarzer" currentTableRef={tableRef.current}>
           <ButtonComponent
-            style={{ padding: 10, marginBottom: 10, marginLeft: 60 }}
+            style={{ padding: 10, marginBottom: 10, marginLeft: 10 }}
             size="large"
             textButton="Tải về file excel"
           />
         </DownloadTableExcel>
 
+        {/* <PieChartComponent /> */}
         <Table
           ref={tableRef}
           rowSelection={{

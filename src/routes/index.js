@@ -57,6 +57,7 @@ export const routes = [
     path: "/privacy-policy",
     page: PrivacyPolicy,
     isShowHeader: true,
+    isPrivate: false,
   },
   {
     path: "/profile-user",
@@ -85,7 +86,7 @@ export const routes = [
   //   isShowHeader: true,
   // },
   {
-    path: "/details-order/:name",
+    path: "/details-order/:id",
     page: DetailsOrderPage,
     isShowHeader: true,
   },

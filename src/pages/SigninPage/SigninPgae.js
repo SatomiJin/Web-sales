@@ -25,13 +25,14 @@ function SigninPage() {
   //gọi API
   const mutation = UserMutationHook((data) => UserService.loginUser(data));
   const { data, isLoading, isSuccess } = mutation;
-
+  console.log("state", location.state);
   //chuyển hướng sang home khi đăng nhập thành công
   useEffect(() => {
     if (isSuccess) {
       message.success();
+      const linkP = location.state;
       if (location?.state) {
-        navigate(location.state);
+        navigate("/");
       } else {
         navigate("/");
       }
