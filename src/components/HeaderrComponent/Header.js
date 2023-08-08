@@ -23,6 +23,7 @@ function Header() {
   const handleLogOutUser = () => {
     setLoading(true);
     localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
     dispatch(resetUser());
     setLoading(false);
     navigate("/");

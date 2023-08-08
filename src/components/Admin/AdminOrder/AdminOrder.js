@@ -1,6 +1,6 @@
 import { Button, Col, Modal, Row, Space } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import { format } from "date-fns";
@@ -287,8 +287,13 @@ function AdminOrder() {
           </Modal>
         </div>
         <div className="chart--order-admin">
-          <Modal title="Biểu đồ mua hàng" open={isOpenChart} onOk={handleCancelChart} onCancel={handleCancelChart}>
-            <PieChartComponent />
+          <Modal
+            title="Phương thức thanh toán thường đươc sử dụng"
+            open={isOpenChart}
+            onOk={handleCancelChart}
+            onCancel={handleCancelChart}
+          >
+            <PieChartComponent data={orders?.data} />
           </Modal>
         </div>
       </div>

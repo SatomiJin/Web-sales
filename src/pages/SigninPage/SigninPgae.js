@@ -25,18 +25,17 @@ function SigninPage() {
   //gọi API
   const mutation = UserMutationHook((data) => UserService.loginUser(data));
   const { data, isLoading, isSuccess } = mutation;
-  console.log("state", location.state);
   //chuyển hướng sang home khi đăng nhập thành công
   useEffect(() => {
     if (isSuccess) {
       message.success();
-      const linkP = location.state;
-      if (location?.state) {
+      if (location.state) {
         navigate("/");
       } else {
         navigate("/");
       }
       localStorage.setItem("access_token", JSON.stringify(data?.access_token));
+      localStorage.setItem("refresh_token", JSON.stringify(data?.refresh_token));
       if (data?.access_token) {
         const decode = jwt_decode(data?.access_token);
 
@@ -48,8 +47,11 @@ function SigninPage() {
   }, [isSuccess]);
 
   const handleGetDetailUser = async (id, token) => {
+    const storage = localStorage.getItem("refresh_token");
+    const refreshToken = JSON.parse(storage);
     const res = await UserService.getDetailUser(id, token);
-    dispatch(updateUser({ ...res, access_token: token }));
+
+    dispatch(updateUser({ ...res, access_token: token, refreshToken }));
   };
   //xử lý dữ liệu form
   const [email, setEmail] = useState("");
