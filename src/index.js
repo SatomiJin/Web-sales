@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { persistor, store } from "./redux/store";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 import App from "./App";
 import "./index.css";
@@ -15,7 +16,9 @@ root.render(
   <QueryClientProvider client={queryClient}>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <App />
+        <PayPalScriptProvider>
+          <App />
+        </PayPalScriptProvider>
       </PersistGate>
     </Provider>
     <ReactQueryDevtools initialIsOpen={false} />

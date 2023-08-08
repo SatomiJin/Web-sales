@@ -3,8 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { PayPalButton } from "react-paypal-button-v2";
-
+import { PayPalButtons } from "@paypal/react-paypal-js";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import ModalComponent from "../../components/Modal/ModalComponent";
 import InputComponent from "../../components/InputComponent/InputComponent";
@@ -353,7 +352,7 @@ const PaymentPage = () => {
               </div>
               {payment === "paypal" && sdkReady ? (
                 <div style={{ width: "320px" }}>
-                  <PayPalButton
+                  <PayPalButtons
                     amount={Math.round(priceMemo / 23000)}
                     // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                     onSuccess={onSuccessPaypal}
