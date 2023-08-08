@@ -11,6 +11,7 @@ import { resetUser } from "../../redux/slides/UserSlide";
 import Loading from "../../loading/Loading";
 import logoTeam from "../../assets/images/logo/logo-team.png";
 import { searchProduct } from "../../redux/slides/ProductSlide";
+import { persistor } from "../../redux/store";
 
 function Header() {
   const user = useSelector((state) => state.user);
@@ -24,6 +25,11 @@ function Header() {
     setLoading(true);
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
+    localStorage.removeItem("__paypal_storage__");
+    persistor.pause();
+    persistor.flush().then(() => {
+      return persistor.purge();
+    });
     dispatch(resetUser());
     setLoading(false);
     navigate("/");
