@@ -1,3 +1,7 @@
 .wrapper-slider{
     background-color: #efefef;
 }
+:where(.css-dev-only-do-not-override-fpg3f5).ant-image{
+    position: relative;
+    display: flex !important;
+}
