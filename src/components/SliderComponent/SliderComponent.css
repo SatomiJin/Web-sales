@@ -1,3 +1,7 @@
 .wrapper-slider{
+    position: relative;
     background-color: #efefef;
+}
+.image-items-slider{
+    width: 100%;
 }

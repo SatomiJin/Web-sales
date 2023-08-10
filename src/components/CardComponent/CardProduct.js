@@ -16,9 +16,9 @@ function CardProduct(props) {
       style={countInStock === 0 ? { opacity: 0.3 } : {}}
       className="cart-items"
       hoverable
-      headStyle={{ width: "200px", height: "200px" }}
+      headStyle={{ height: "30vh" }}
       bodyStyle={{ padding: 10 }}
-      cover={<img alt="example" src={image} />}
+      cover={<img alt="example" src={image} className="image-product-card-product" />}
       onClick={() => handleDetailProduct(name)}
     >
       <img className="logo-web" src={logo} alt="logo" />

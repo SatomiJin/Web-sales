@@ -15,7 +15,8 @@
     margin-bottom: 3px;
 }
 .sliders-container{
-    width: 1280px;
+    width: 75vw;
+    margin-top: 5vh;
     padding-left: 24px;
     padding-right: 24px;
     margin-right: auto;
@@ -33,10 +34,11 @@
 }
 
 .button-wrapper{
-    widows: 100%;
+    width: 100%;
     display: flex;
     align-items: center;
-    margin-top: -50px;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
     justify-content: center;
 }
 
@@ -45,9 +47,10 @@
     text-align: center;
     border: 1px solid rgb(10, 104, 255);
     color: rgb(10, 104, 255);
-    width: 240px;
-    height: 38px;
-    font-weight: 500;
+    width: 40vh;
+    height: 7vh;
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 .button-show-more:hover{
     background-color: rgba(0, 96, 255, 0.12) !important;

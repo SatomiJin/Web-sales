@@ -86,7 +86,7 @@ function Header() {
         <Col span={6} className="header-left">
           <WrapperTextHeader>
             <NavLink to="/">
-              <img src={logoTeam} alt="logo" class="logo" />
+              <img src={logoTeam} alt="logo" className="logo" />
             </NavLink>
           </WrapperTextHeader>
         </Col>

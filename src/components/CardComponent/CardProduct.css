@@ -1,15 +1,18 @@
 .cart-items{
     position: relative;
-    width: 184px;
+    width: 30vh;
     align-items: center;
     gap: 20px;
     border: 1px solid #ccc;
     
 }
-
+.image-product-card-product{
+    width: auto;
+    height: auto;
+}
 .products-name{
-    font-weight: 400;
-    font-size: 12px;
+    font-weight: 700;
+    font-size: 1.4rem;
     line-height: 16px;
     color: rgb(56,56,61);
 }
