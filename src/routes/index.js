@@ -96,7 +96,6 @@ export const routes = [
     page: PaymentPage,
     isShowHeader: true,
   },
-
   {
     path: "*",
     page: NotFoundPage,
