@@ -11,26 +11,32 @@
     gap: 24px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     justify-content: flex-start;
-    height: 44px;
+    height: 60px;
     margin-bottom: 3px;
 }
 .sliders-container{
-    padding: 0 120px;   
+    width: 1280px;
+    padding-left: 24px;
+    padding-right: 24px;
+    margin-right: auto;
+    margin-left: auto;  
 }
 
 .card-homepages{
     display: flex;
-    
-    margin-top: 20px;
+    min-height: calc(100vh - 11.25rem);
     flex-wrap: wrap;
-    gap: 25px;
+    align-content: flex-start;
+    padding: 0.3125rem 0 0;
+    margin-top: 20px;
+    gap: 20px;
 }
 
 .button-wrapper{
     widows: 100%;
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: -50px;
     justify-content: center;
 }
 
@@ -46,4 +52,11 @@
 .button-show-more:hover{
     background-color: rgba(0, 96, 255, 0.12) !important;
     opacity: 1 !important;
+}
+:where(.css-dev-only-do-not-override-fpg3f5).ant-image{
+    position: relative;
+    display: flex;
+}
+.ant-card-cover{
+    height: 184px
 }

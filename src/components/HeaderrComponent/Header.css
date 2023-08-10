@@ -13,6 +13,7 @@
     font-weight: bold;
     color: #fff;
     align-items: center;
+    margin-left: 160px;
 }
 .account{
     display: flex;
@@ -41,6 +42,13 @@
 .cart-text{
     display: flex;
     white-space: nowrap;
+}
+.Search{
+    margin-top: 10px;
+}
+.logo{
+    width: 65px;
+    filter: drop-shadow(0 0 5px rgb(212, 10, 10));
 }
 /* icon */
 .account-icon{
