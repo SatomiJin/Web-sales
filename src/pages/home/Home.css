@@ -55,7 +55,7 @@
 }
 :where(.css-dev-only-do-not-override-fpg3f5).ant-image{
     position: relative;
-    display: flex;
+    display: flex !important;
 }
 .ant-card-cover{
     height: 184px
