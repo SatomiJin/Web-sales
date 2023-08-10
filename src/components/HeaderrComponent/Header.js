@@ -9,7 +9,7 @@ import "./Header.css";
 import InputSearch from "../inputSearch/InputSearch";
 import { resetUser } from "../../redux/slides/UserSlide";
 import Loading from "../../loading/Loading";
-import logoTeam from "../../assets/images/logo/logo-team.png";
+import logoTeam from "../../assets/images/logo/schwarzer_ritter-1.png";
 import { searchProduct } from "../../redux/slides/ProductSlide";
 import { persistor } from "../../redux/store";
 
@@ -86,7 +86,7 @@ function Header() {
         <Col span={6} className="header-left">
           <WrapperTextHeader>
             <NavLink to="/">
-              <img src={logoTeam} style={{ width: 50 }} alt="logo" />
+              <img src={logoTeam} alt="logo" class ="logo" />
             </NavLink>
           </WrapperTextHeader>
         </Col>
