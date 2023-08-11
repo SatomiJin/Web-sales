@@ -18,7 +18,7 @@ function TypeProductPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [paginate, setPaginate] = useState({
     page: 0,
-    limit: 10,
+    limit: 6,
     total: 1,
   });
   const onChange = (current, pageSize) => {

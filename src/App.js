@@ -63,26 +63,6 @@ function App() {
     const res = await UserService.getDetailUser(id, token);
     dispatch(updateUser({ ...res?.data, access_token: token, refreshToken: refreshToken }));
   };
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   let storageData = localStorage.getItem("access_token");
-  //   if (storageData && isJsonString(storageData)) {
-  //     storageData = JSON.parse(storageData);
-  //     const decoded = jwt_decode(storageData);
-  //     if (decoded?.id) {
-  //       handleGetDetailsUser(decoded?.id, storageData);
-  //     }
-  //   }
-  //   setIsLoading(false);
-  // }, []);
-
-  // const handleGetDetailsUser = async (id, token) => {
-  //   const res = await UserService.getDetailUser(id, token);
-  //   dispatch(updateUser({ ...res, access_token: token }));
-  //   setIsLoading(false);
-  // };
-
-  //
 
   return (
     <div className="App">

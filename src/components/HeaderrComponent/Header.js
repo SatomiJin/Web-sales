@@ -4,6 +4,7 @@ import { UserOutlined, ShoppingCartOutlined } from "@ant-design/icons";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { HomeOutlined } from "@ant-design/icons";
 
 import "./Header.css";
 import InputSearch from "../inputSearch/InputSearch";
@@ -12,6 +13,7 @@ import Loading from "../../loading/Loading";
 import logoTeam from "../../assets/images/logo/logo-team.png";
 import { searchProduct } from "../../redux/slides/ProductSlide";
 import { persistor } from "../../redux/store";
+import ButtonComponent from "../ButtonComponent/ButtonComponent";
 
 function Header() {
   const user = useSelector((state) => state.user);
@@ -90,13 +92,27 @@ function Header() {
             </NavLink>
           </WrapperTextHeader>
         </Col>
-        <Col span={11} className="header-middle">
+        <Col span={9} className="header-middle">
           <InputSearch onChange={onSearch} size="large" placeholder="Tìm kiếm sản phẩm..." />
         </Col>
-        <Col span={7} className="header-right">
+        <Col span={9} className="header-right">
           <WrapperHeaderAccount>
             <div className="account">
               {/* logic */}
+              {user?.name ? (
+                <Link to={"/"}>
+                  <button className="btn-account" style={{ width: "12.8rem", height: "4.5rem", fontWeight: 600 }}>
+                    <HomeOutlined /> Trang chủ
+                  </button>
+                </Link>
+              ) : (
+                <Link to={"/"}>
+                  <button className="btn-account" style={{ fontWeight: 600 }}>
+                    <HomeOutlined /> Trang chủ
+                  </button>
+                </Link>
+              )}
+
               {user?.name ? (
                 <>
                   <Loading isLoading={loading}>

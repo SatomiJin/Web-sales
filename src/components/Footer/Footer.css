@@ -1,0 +1,106 @@
+.footer-container{
+    background-color: rgb(0,0,0,0.79);
+    color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+h3{
+    font-size: 2.4rem;
+}
+
+/* phần bên trái của footer */
+.left-footer-wrapper{
+    margin-bottom: 20px;
+    margin-top: 10px;
+    padding: 5px;
+}
+.about-us-footer{
+   align-items: center;
+   justify-content: center;
+    text-align: center;
+}   
+.logo-team-footer{
+    text-align: center;
+    width: 20vh;
+    height: 20vh;
+    margin-top: 5vh;
+}
+
+
+/* phân ở giữa  */
+.center-footer-wrapper{
+    margin-top: 2vh;
+}
+.list-product-footer{
+    padding: 4vh;
+}
+.list-product-item-footer{
+    margin-top: 5px;
+    font-size: 1.8rem;    
+    &:hover{
+        color: #4ee44e;
+        cursor: pointer;
+    }
+}
+/* phần bên phải footer */
+.right-footer-wrapper{
+    margin-top: 10px;
+}
+.list-social-items{
+    font-size: 3rem;
+    padding: 5px;
+}
+.fa-brands{
+    margin-right: 10px;
+    font-size: 4rem;
+    &.fa-facebook{
+        border-radius: 50%;
+        &:hover{
+            color: #365899;
+            background-color: #F6F7F9;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        }
+    }
+    &.fa-twitter{
+        &:hover{
+            color: #1DA1F2;
+            cursor: pointer;
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+        }
+    }
+    &.fa-instagram{
+        border-radius: 20%;
+        &:hover{
+            background: linear-gradient(to bottom, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+            cursor: pointer;
+
+        }
+    }
+    &.fa-discord{
+        &:hover{
+            box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+            color: #7289DA;
+            cursor: pointer;
+        }
+    }
+}
+/* đăng ký */
+.subscribe-us{
+    margin-top: 10px;
+}
+.subscribe-content{
+    margin-top: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.btn-sub-footer{
+    color: rgb(255, 255, 255);
+    background-color: rgb(26, 148, 255);
+    border: none;
+    &:hover{
+        box-shadow: rgba(187, 221, 234, 0.12) 0px 2px 4px 0px, rgba(187, 221, 234, 0.12) 0px 2px 16px 0px;
+        color: rgb(255, 255, 255) !important;
+        background: linear-gradient(0deg,rgba(0,3,255,1) 0%,rgba(2,126,251,1) 100%);
+    }
+}

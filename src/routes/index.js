@@ -12,7 +12,6 @@ import ProfileUser from "../pages/ProfileUser/ProfileUser";
 import AdminPage from "../pages/Admin/AdminPage";
 import OrderPage from "../pages/OrderPage/OrderPage";
 import PaymentPage from "../pages/Payment/PaymentPage";
-import OrderSuccessPage from "../pages/OrderSuccess/OrderSuccessPage";
 import MyOrderPage from "../pages/MyOrderPage/MyOrderPage";
 import DetailsOrderPage from "../pages/DetailsOrderPage/DetailsOrderPage";
 

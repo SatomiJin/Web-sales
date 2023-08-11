@@ -19,7 +19,7 @@ function SliderComponent() {
     <div className="wrapper-slider">
       <Slider {...settings}>
         {images.map((image, index) => {
-          return <img className="image-items-slider" src={image} preview={false} alt="sliders" key={index} />;
+          return <img className="image-items-slider" src={image} alt="sliders" key={index} />;
         })}
       </Slider>
     </div>

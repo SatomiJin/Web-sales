@@ -103,3 +103,28 @@ export const convertDataChart = (data, type) => {
     return [];
   }
 };
+
+// danh sách thành viên
+export const member = [
+  {
+    name: "Nguyễn Tấn Đạt - Leader",
+    mssv: "46.01.104.023",
+  },
+  {
+    name: "Đồng Hữu Trọng",
+    mssv: "46.01.104.201",
+  },
+  {
+    name: "Đinh Trần Thanh Tú",
+    mssv: "46.01.104.205",
+  },
+
+  {
+    name: "Nguyễn Xuân Hữu",
+    mssv: "46.01.104.064",
+  },
+  {
+    name: "Nguyễn Văn Hiếu",
+    mssv: "46.01.104.054",
+  },
+];
