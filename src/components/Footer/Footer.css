@@ -43,7 +43,7 @@ h3{
 }
 /* phần bên phải footer */
 .right-footer-wrapper{
-    margin-top: 10px;
+    margin-top: 2vh;
 }
 .list-social-items{
     font-size: 3rem;
@@ -87,7 +87,7 @@ h3{
 }
 /* đăng ký */
 .subscribe-us{
-    margin-top: 10px;
+    margin-top: 2vh;
 }
 .subscribe-content{
     margin-top: 10px;
@@ -104,3 +104,4 @@ h3{
         background: linear-gradient(0deg,rgba(0,3,255,1) 0%,rgba(2,126,251,1) 100%);
     }
 }
+
