@@ -12,12 +12,20 @@ import { isJsonString } from "./utils";
 import { resetUser, updateUser } from "./redux/slides/UserSlide";
 import Loading from "./loading/Loading";
 
+const TRACKING_ID = "G-YGRWFML5QX";
+ReactGA.initialize(TRACKING_ID);
+
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.user);
-  const TRACKING_ID = "G-YGRWFML5QX";
-  ReactGA.initialize(TRACKING_ID);
+  useEffect(() => {
+    ReactGA.send({
+      hitType: "pageview",
+      page: window.location.pathname + window.location.search,
+      title: "Visit Schwarcher Ritter page",
+    });
+  }, []);
   useEffect(() => {
     setIsLoading(true);
     const { storageData, decoded } = handleDecoded();
