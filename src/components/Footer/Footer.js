@@ -67,12 +67,7 @@ function Footer() {
         </Col>
         <Col span={6}>
           <div className="subscribe-us">
-            <h3>Đăng ký nhận ưu đãi</h3>
-            <div className="subscribe-content">Đăng ký ngay để nhận thông báo ưu đãi từ chúng tôi</div>
-            {/* <a href="https://form-email-marketing.vercel.app/">
-              <ButtonComponent className="btn-sub-footer" size="large" textButton="Đăng ký" />
-            </a> */}
-            <getresponse-form form-id="9ab57160-dcf4-4d84-8498-315ddbfa8225" e="1"></getresponse-form>
+            <getresponse-form form-id="bde31dbe-620e-4a69-a95d-3dec5e7443d3" e="1"></getresponse-form>
           </div>
         </Col>
       </Row>

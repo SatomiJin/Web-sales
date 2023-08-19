@@ -74,58 +74,50 @@ const MyOrderPage = () => {
           <h2>Đơn hàng của tôi</h2>
 
           <div className="wrapper-list-order">
-            {data?.lenght ? (
-              data?.map((order) => {
-                return (
-                  <div className="wrapper-items-order" key={order?._id}>
-                    <div className="wrapper-status-orders">
-                      <span style={{ fontSize: "14px", fontWeight: "bold" }}>Trạng thái</span>
-                      <div>
-                        <span style={{ color: "rgb(255, 66, 78)" }}>Giao hàng: </span>
-                        <span style={{ color: "rgb(90, 32, 193)", fontWeight: "bold" }}>{`${
-                          order.isDelivered ? "Đã giao hàng" : "Chưa giao hàng"
-                        }`}</span>
-                      </div>
-                      <div>
-                        <span style={{ color: "rgb(255, 66, 78)" }}>Thanh toán: </span>
-                        <span style={{ color: "rgb(90, 32, 193)", fontWeight: "bold" }}>{`${
-                          order.isPaid ? "Đã thanh toán" : "Chưa thanh toán"
-                        }`}</span>
-                      </div>
+            {data?.map((order) => {
+              return (
+                <div className="wrapper-items-order" key={order?._id}>
+                  <div className="wrapper-status-orders">
+                    <span style={{ fontSize: "14px", fontWeight: "bold" }}>Trạng thái</span>
+                    <div>
+                      <span style={{ color: "rgb(255, 66, 78)" }}>Giao hàng: </span>
+                      <span style={{ color: "rgb(90, 32, 193)", fontWeight: "bold" }}>{`${
+                        order.isDelivered ? "Đã giao hàng" : "Chưa giao hàng"
+                      }`}</span>
                     </div>
-                    {renderProduct(order?.orderItems)}
-                    <div className="wrapper-footer-item">
-                      <div>
-                        <span style={{ color: "rgb(255, 66, 78)" }}>Tổng tiền: </span>
-                        <span style={{ fontSize: "13px", color: "rgb(56, 56, 61)", fontWeight: 700 }}>
-                          {convertPrice(order?.totalPrice)}
-                        </span>
-                      </div>
-                      <div style={{ display: "flex", gap: "10px" }}>
-                        <ButtonComponent
-                          className="cancel-btn-order"
-                          onClick={() => handleCanceOrder(order)}
-                          size="large"
-                          textButton="Hủy đơn hàng"
-                        ></ButtonComponent>
-                        <ButtonComponent
-                          className="show-details-order"
-                          onClick={() => handleDetailsOrder(order?._id)}
-                          size={40}
-                          textButton="Xem chi tiết"
-                        ></ButtonComponent>
-                      </div>
+                    <div>
+                      <span style={{ color: "rgb(255, 66, 78)" }}>Thanh toán: </span>
+                      <span style={{ color: "rgb(90, 32, 193)", fontWeight: "bold" }}>{`${
+                        order.isPaid ? "Đã thanh toán" : "Chưa thanh toán"
+                      }`}</span>
                     </div>
                   </div>
-                );
-              })
-            ) : (
-              <div className="your-items-order">
-                <h2>
-                  Bạn chưa có đơn hàng nào <i class="fa-solid fa-box"></i>
-                </h2>
-              </div>
-            )}
+                  {renderProduct(order?.orderItems)}
+                  <div className="wrapper-footer-item">
+                    <div>
+                      <span style={{ color: "rgb(255, 66, 78)" }}>Tổng tiền: </span>
+                      <span style={{ fontSize: "13px", color: "rgb(56, 56, 61)", fontWeight: 700 }}>
+                        {convertPrice(order?.totalPrice)}
+                      </span>
+                    </div>
+                    <div style={{ display: "flex", gap: "10px" }}>
+                      <ButtonComponent
+                        className="cancel-btn-order"
+                        onClick={() => handleCanceOrder(order)}
+                        size="large"
+                        textButton="Hủy đơn hàng"
+                      ></ButtonComponent>
+                      <ButtonComponent
+                        className="show-details-order"
+                        onClick={() => handleDetailsOrder(order?._id)}
+                        size={40}
+                        textButton="Xem chi tiết"
+                      ></ButtonComponent>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
