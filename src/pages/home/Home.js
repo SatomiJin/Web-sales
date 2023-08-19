@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import ReactGA from "react-ga";
 import { useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
 

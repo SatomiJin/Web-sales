@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 import * as UserService from "./Services/UserService";
 import DefaultComponent from "./components/DefaultComponent/DefaultComponent";
@@ -12,14 +12,12 @@ import { isJsonString } from "./utils";
 import { resetUser, updateUser } from "./redux/slides/UserSlide";
 import Loading from "./loading/Loading";
 
-const TRACKING_ID = "UA-241568128-2";
-ReactGA.initialize(TRACKING_ID);
-
 function App() {
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const user = useSelector((state) => state.user);
-
+  const TRACKING_ID = "G-YGRWFML5QX";
+  ReactGA.initialize(TRACKING_ID);
   useEffect(() => {
     setIsLoading(true);
     const { storageData, decoded } = handleDecoded();
