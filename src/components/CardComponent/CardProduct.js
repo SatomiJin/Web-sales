@@ -1,14 +1,26 @@
 import { Card } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import ReactGA from "react-ga";
+import { useEffect } from "react";
 
 import "./CardProduct.css";
 import logo from "../../assets/images/logo/logo.png";
 import { convertPrice } from "../../utils";
 function CardProduct(props) {
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+  }, []);
+
   const { image, name, price, rating, type, discount, sold, id, countInStock } = props;
   const navigate = useNavigate();
   const handleDetailProduct = (name) => {
+    ReactGA.event({
+      category: type,
+      action: " View product",
+      label: name,
+      value: price,
+    });
     navigate(`/product-detail/${name.toLowerCase().replace(/\s/g, "-")}`, { state: name });
   };
   return (

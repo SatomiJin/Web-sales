@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
+import ReactGA from "react-ga";
 
 import * as UserService from "./Services/UserService";
 import DefaultComponent from "./components/DefaultComponent/DefaultComponent";
@@ -10,6 +11,9 @@ import { routes } from "./routes";
 import { isJsonString } from "./utils";
 import { resetUser, updateUser } from "./redux/slides/UserSlide";
 import Loading from "./loading/Loading";
+
+const TRACKING_ID = "UA-241568128-1";
+ReactGA.initialize(TRACKING_ID);
 
 function App() {
   const dispatch = useDispatch();

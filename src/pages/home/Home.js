@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
+import ReactGA from "react-ga";
+import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
 
 import CardProduct from "../../components/CardComponent/CardProduct";
 import ProductType from "../../components/ProductType/ProductType";
 import SliderComponent from "../../components/SliderComponent/SliderComponent";
 import ButtonComponent from "../../components/ButtonComponent/ButtonComponent";
 import * as ProductService from "../../Services/ProductService";
-import "./Home.css";
-import { useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
 import Loading from "../../loading/Loading";
 import useDebounce from "../../hooks/useDebounce";
+import "./Home.css";
 
 function Home() {
   const searchProduct = useSelector((state) => state.product.search);
