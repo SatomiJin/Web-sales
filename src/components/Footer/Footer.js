@@ -69,9 +69,10 @@ function Footer() {
           <div className="subscribe-us">
             <h3>Đăng ký nhận ưu đãi</h3>
             <div className="subscribe-content">Đăng ký ngay để nhận thông báo ưu đãi từ chúng tôi</div>
-            <a href="https://form-email-marketing.vercel.app/">
+            {/* <a href="https://form-email-marketing.vercel.app/">
               <ButtonComponent className="btn-sub-footer" size="large" textButton="Đăng ký" />
-            </a>
+            </a> */}
+            <getresponse-form form-id="9ab57160-dcf4-4d84-8498-315ddbfa8225" e="1"></getresponse-form>
           </div>
         </Col>
       </Row>
