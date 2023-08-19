@@ -1,9 +1,6 @@
 import { Card } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import ReactGA from "react-ga";
-import { useEffect } from "react";
-
 import "./CardProduct.css";
 import logo from "../../assets/images/logo/logo.png";
 import { convertPrice } from "../../utils";
