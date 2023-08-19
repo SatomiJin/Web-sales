@@ -12,7 +12,7 @@ import { isJsonString } from "./utils";
 import { resetUser, updateUser } from "./redux/slides/UserSlide";
 import Loading from "./loading/Loading";
 
-const TRACKING_ID = "UA-241568128-1";
+const TRACKING_ID = "UA-241568128-2";
 ReactGA.initialize(TRACKING_ID);
 
 function App() {
