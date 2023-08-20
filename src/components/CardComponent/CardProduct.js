@@ -17,7 +17,14 @@ function CardProduct(props) {
       hoverable
       headStyle={{ height: "30vh" }}
       bodyStyle={{ padding: 10 }}
-      cover={<img alt="example" src={image} className="image-product-card-product" />}
+      cover={
+        <img
+          alt="example"
+          style={{ width: "100%", height: "100%" }}
+          src={image}
+          className="image-product-card-product"
+        />
+      }
       onClick={() => handleDetailProduct(name)}
     >
       <img className="logo-web" src={logo} alt="logo" />

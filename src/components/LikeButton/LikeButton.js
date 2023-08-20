@@ -1,12 +1,12 @@
 import "./LikeButton.css";
 
 function LikeButton(props) {
-  const { dataHref } = props;
+  const { dataHref = "sales.schwarzerritter.tech" } = props;
   return (
     <div className="fb-like-container">
       <div
-        className="fb-like"
-        data-href={dataHref}
+        class="fb-like"
+        data-href="https://sales.schwarzerritter.tech/"
         data-width=""
         data-layout=""
         data-action=""

@@ -1,8 +1,13 @@
-function Comments(props) {
-  const { dataHref, width } = props;
+function Comments() {
+  //const { dataHref, width } = props;
   return (
     <div className="fb-comments-container">
-      <div className="fb-comments" data-href={dataHref} data-width={width} data-numposts={5}></div>
+      <div
+        class="fb-comments"
+        data-href="https://sales.schwarzerritter.tech/"
+        data-width="1010"
+        data-numposts="5"
+      ></div>
     </div>
   );
 }

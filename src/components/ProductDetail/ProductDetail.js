@@ -35,7 +35,7 @@ const ProductDetail = ({ idProduct }) => {
       return res;
     }
   };
-  console.log(window.location.href, process.env.REACT_APP_IS_LOCAL);
+
   useEffect(() => {
     initFacebookSDK();
   }, []);
@@ -144,11 +144,7 @@ const ProductDetail = ({ idProduct }) => {
               <span className="address-product-detail-text">{user.address}</span>-{" "}
               <span className="address-product-detail-change-address">Đổi địa chỉ</span>
             </div>
-            <LikeButton
-              dataHref={
-                process.env.REACT_APP_IS_LOCAL ? "https://developers.facebook.com/docs/plugins/" : window.location.href
-              }
-            />
+            <LikeButton />
             <div className="quantity-product-detail">
               <p>Số lượng</p>
               <div className="quantity-product-detail-wrapper">
@@ -187,14 +183,7 @@ const ProductDetail = ({ idProduct }) => {
             </div>
           </Col>
           <div className="fb-comment-details-page">
-            <Comments
-              dataHref={
-                process.env.REACT_APP_IS_LOCAL
-                  ? "https://developers.facebook.com/docs/plugins/comments#configurator"
-                  : window.location.href
-              }
-              width="1010"
-            />
+            <Comments />
           </div>
         </Row>
       </div>
