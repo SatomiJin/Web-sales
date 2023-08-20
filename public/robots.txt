@@ -1,4 +1,4 @@
 # https://sales.schwarzerritter.tech/robots.txt
-Sitemap: "../sitemap.xml"
+Sitemap: "./sitemap.xml"
 User-agent: *
 Disallow:
