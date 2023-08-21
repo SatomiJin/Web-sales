@@ -3,7 +3,7 @@ function Comments() {
   return (
     <div className="fb-comments-container">
       <div
-        class="fb-comments"
+        className="fb-comments"
         data-href="https://sales.schwarzerritter.tech/"
         data-width="1010"
         data-numposts="5"

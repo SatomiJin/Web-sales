@@ -5,7 +5,7 @@ function LikeButton(props) {
   return (
     <div className="fb-like-container">
       <div
-        class="fb-like"
+        className="fb-like"
         data-href="https://sales.schwarzerritter.tech/"
         data-width=""
         data-layout=""

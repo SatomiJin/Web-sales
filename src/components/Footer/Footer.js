@@ -2,10 +2,10 @@ import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import LikeButton from "../../components/LikeButton/LikeButton";
 import logo from "../../assets/images/logo/logo-team.png";
 import * as ProductService from "../../Services/ProductService";
 import "./Footer.css";
-import ButtonComponent from "../ButtonComponent/ButtonComponent";
 
 function Footer() {
   const [typeProducts, setTypeProducts] = useState([]);
@@ -47,7 +47,7 @@ function Footer() {
           <div className="list-product-footer">
             {typeProducts?.map((type, index) => {
               return (
-                <div className="list-product-item-footer" onClick={() => handleNavigateType(type)}>
+                <div key={index} className="list-product-item-footer" onClick={() => handleNavigateType(type)}>
                   {type}
                 </div>
               );
@@ -69,6 +69,7 @@ function Footer() {
           <div className="subscribe-us">
             <getresponse-form form-id="bde31dbe-620e-4a69-a95d-3dec5e7443d3" e="1"></getresponse-form>
           </div>
+          <LikeButton />
         </Col>
       </Row>
     </div>

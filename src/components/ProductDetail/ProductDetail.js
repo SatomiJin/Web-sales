@@ -2,7 +2,7 @@ import { Col, Image, InputNumber, Rate, Row } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import * as ProductService from "../../Services/ProductService";
@@ -15,7 +15,7 @@ import "./ProductDetail.css";
 import LikeButton from "../LikeButton/LikeButton";
 import Comments from "../Comments/Comments";
 
-const ProductDetail = ({ idProduct }) => {
+const ProductDetail = ({ nameProduct }) => {
   const [numProduct, setNumProduct] = useState(1);
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,12 +26,13 @@ const ProductDetail = ({ idProduct }) => {
     setNumProduct(Number(e.target.value));
   };
   const user = useSelector((state) => state?.user);
-  const order = useSelector((state) => state.order);
+
   //lấy thông tin product nha
   const fetchGetDetailProduct = async (context) => {
     const name = context?.queryKey && context?.queryKey[1];
     if (name) {
-      const res = ProductService.getDetailWithName(state);
+      const res = ProductService.getDetailWithName(nameProduct);
+      console.log("res", res);
       return res;
     }
   };
@@ -48,8 +49,8 @@ const ProductDetail = ({ idProduct }) => {
   //   }
   //   return stars;
   // };
-  const { isLoading, data: productDetails } = useQuery(["products-details", idProduct], fetchGetDetailProduct, {
-    enabled: !!idProduct,
+  const { isLoading, data: productDetails } = useQuery(["products-details", nameProduct], fetchGetDetailProduct, {
+    enabled: !!nameProduct,
   });
   //thêm snar phẩm vào giỏ hàng
   const handleAddOrder = () => {
