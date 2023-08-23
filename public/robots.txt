@@ -1,4 +1,8 @@
-# https://sales.schwarzerritter.tech/robots.txt
-Sitemap: "./sitemap.xml"
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
 User-agent: *
-Disallow:
+Disallow: /
+Allow: /public/
+
+Sitemap: https://sales.schwarzerritter.tech/sitemap.xml
