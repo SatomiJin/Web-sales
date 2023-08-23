@@ -35,7 +35,7 @@ function Footer() {
     <div className="footer-container">
       <Row>
         <Col span={8} className="left-footer-wrapper">
-          <h3>Về chúng tôi</h3>
+          <p className="footer-title">Về chúng tôi</p>
           <div className="about-us-footer">
             <img src={logo} className="logo-team-footer" alt="schwarzer" />
             <br />
@@ -43,7 +43,7 @@ function Footer() {
           </div>
         </Col>
         <Col span={5} className="center-footer-wrapper">
-          <h3>Sản phẩm</h3>
+          <p className="footer-title">Sản phẩm</p>
           <div className="list-product-footer">
             {typeProducts?.map((type, index) => {
               return (
@@ -56,7 +56,7 @@ function Footer() {
         </Col>
         <Col span={5}>
           <div className="right-footer-wrapper">
-            <h3>Liên hệ với chúng tôi</h3>
+            <p className="footer-title">Liên hệ với chúng tôi</p>
             <div className="list-social-items">
               <i className="fa-brands fa-facebook"></i>
               <i className="fa-brands fa-twitter"></i>
