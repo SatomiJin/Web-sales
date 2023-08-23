@@ -22,6 +22,7 @@ function AdminUser() {
   //useForm
   const [form] = useForm();
   const [isLoadingUpdate, setIsLoadingUpdate] = useState(false);
+  const [isLoadingFormUpdate, setIsLoadingFormUpdate] = useState(false);
   const [stateUser, setStateUser] = useState({
     name: "",
     email: "",
@@ -115,6 +116,7 @@ function AdminUser() {
         name: res.name,
         email: res.email,
         password: res.password,
+        isAdmin: res.isAdmin,
         phone: res.phone,
         address: res.address,
         avatar: res.avatar,
@@ -144,7 +146,9 @@ function AdminUser() {
   }, [isSuccessUpdated, isErrorUpdated]);
 
   useEffect(() => {
+    setIsLoadingFormUpdate(true);
     form.setFieldsValue(stateUserDetail);
+    setIsLoadingFormUpdate(false);
   }, [form, stateUserDetail]);
 
   useEffect(() => {
@@ -166,7 +170,7 @@ function AdminUser() {
   const renderUserActions = () => {
     return (
       <div className="actions-user-admin-page">
-        <ButtonComponent type="primary" icon={<EditOutlined />} onClick={() => setIsOpenDrawer(true)} />
+        <ButtonComponent type="primary" icon={<EditOutlined />} onClick={handleOpenDrawer} />
         &nbsp;
         <ButtonComponent danger icon={<DeleteOutlined />} onClick={() => setIsOpenDelete(true)} />
       </div>
@@ -307,6 +311,9 @@ function AdminUser() {
   const handleCancelDelete = () => {
     setIsOpenDelete(false);
   };
+  const handleOpenDrawer = () => {
+    setIsOpenDrawer(true);
+  };
   const handleCloseDrawer = () => {
     setIsOpenDrawer(false);
     setStateUserDetail({
@@ -314,6 +321,7 @@ function AdminUser() {
       email: "",
       password: "",
       phone: "",
+      isAdmin: false,
       avatar: "",
       address: "",
     });
@@ -531,14 +539,14 @@ function AdminUser() {
         </Loading>
       </ModalComponent>
       {/* sửa thông tin người dùng */}
-      <DrawerComponent
-        width="80vw"
-        title="Chi tiết người dùng"
-        placement="left"
-        isOpen={isOpenDrawer}
-        onClose={() => setIsOpenDrawer(false)}
-      >
-        <Loading isLoading={isLoadingUpdate}>
+      <Loading isLoading={isLoadingFormUpdate}>
+        <DrawerComponent
+          width="80vw"
+          title="Chi tiết người dùng"
+          placement="left"
+          isOpen={isOpenDrawer}
+          onClose={handleCloseDrawer}
+        >
           <Form
             form={form}
             name="userForm"
@@ -563,6 +571,10 @@ function AdminUser() {
 
             <Form.Item label="Số điện thoại" name="phone">
               <InputComponent value={stateUserDetail.phone} onChange={handleOnChangeDetails} name="phone" />
+            </Form.Item>
+
+            <Form.Item label="ADMIN" name="isAdmin">
+              <InputComponent value={stateUserDetail.isAdmin} onChange={handleOnChangeDetails} name="isAdmin" />
             </Form.Item>
 
             <Form.Item label="Địa chỉ" name="address">
@@ -591,8 +603,8 @@ function AdminUser() {
               <ButtonComponent onClick={onUpdateUser} htmlType="submit" textButton="Cập nhật"></ButtonComponent>
             </Form.Item>
           </Form>
-        </Loading>
-      </DrawerComponent>
+        </DrawerComponent>
+      </Loading>
       {/* xóa người dùng */}
       <ModalComponent
         title="Xóa người dùng"
