@@ -16,7 +16,7 @@ import { getBase64 } from "../../utils";
 function ProfileUser() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user);
-
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
   const [email, setEmail] = useState(user?.email);
   const [name, setName] = useState(user?.name);
   const [address, setAddress] = useState(user?.address);
@@ -25,25 +25,28 @@ function ProfileUser() {
 
   const dispatch = useDispatch();
   const mutation = UserMutationHook((data) => {
-    const { id, access_token, ...rests } = data;
-    UserService.updateUser(id, rests, access_token);
+    const { id, ...rests } = data;
+    UserService.updateUser(id, rests);
   });
 
   const { data, isLoading, isSuccess, isError } = mutation;
 
   useEffect(() => {
+    setIsLoadingUser(true);
     setEmail(user?.email);
     setAddress(user?.address);
     setName(user?.name);
     setPhone(user?.phone);
     setAvatar(user?.avatar);
+    setIsLoadingUser(false);
   }, [user]);
 
   useEffect(() => {
     if (isSuccess) {
       message.success();
+      setIsLoadingUser(true);
       handleGetDetailUser(user?.id, user?.access_token);
-      window.location.reload();
+      setIsLoadingUser(false);
     } else if (isError) {
       message.error();
     }
