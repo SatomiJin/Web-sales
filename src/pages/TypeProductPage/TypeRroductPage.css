@@ -3,7 +3,7 @@
     padding: 0 120px;
     background-color: #efefef;
     margin-top: 90px;
-    height: 100vh;
+    height: 130vh;
     align-items: center;
     justify-content: center;
 }
@@ -32,6 +32,6 @@
     position: absolute;
     bottom: 20px;
     left: 50%;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-bottom: 20px;
 }

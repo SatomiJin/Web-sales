@@ -1,7 +1,33 @@
 import { Checkbox, Rate } from "antd";
+import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import "./NavBar.css";
+import * as ProductService from "../../Services/ProductService";
 
 function NavBar() {
+  const [typeProducts, setTypeProducts] = useState([]);
+  //lấy loại sản phầm
+  const fetchGetAllTypeProduct = async () => {
+    const res = await ProductService.getAllTypeProduct();
+    if (res?.status === "OK") {
+      setTypeProducts(res.data);
+    }
+  };
+  //lấy loại sản phầm
+  useEffect(() => {
+    fetchGetAllTypeProduct();
+  }, []);
+
+  const navigate = useNavigate();
+  const handleNavigateType = (type) => {
+    navigate(
+      `/product/${type
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        ?.replace(/ /g, "-")}`,
+      { state: type }
+    );
+  };
   const handleOnchange = () => {};
   const renderContent = (type, options) => {
     switch (type) {
@@ -50,10 +76,17 @@ function NavBar() {
         return {};
     }
   };
+  const listProduct = typeProducts?.map((type, index) => {
+    return (
+      <div key={index} className="list-product-item-footer" onClick={() => handleNavigateType(type)}>
+        {type}
+      </div>
+    );
+  });
   return (
     <div className="wrapper-navbar">
-      <h4 className="label-nav">label </h4>
-      <div className="nav-content">{renderContent("text", ["Tu lanh", "TV", "Laptop"])}</div>
+      <h3 className="label-nav">Danh mục</h3>
+      <div className="nav-content">{renderContent("text", [listProduct])}</div>
     </div>
   );
 }
