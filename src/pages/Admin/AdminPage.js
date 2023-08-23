@@ -50,7 +50,7 @@ function AdminPage() {
           onClick={onClick}
           style={{
             width: 300,
-            height: "1000px",
+            height: "100vh",
             boxShadow: "1px 1px 2px #ccc",
           }}
           mode="inline"
